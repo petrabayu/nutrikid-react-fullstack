@@ -1,9 +1,14 @@
 import "./App.css";
+import Consultation from "./Pages/Consultation";
+import Login from "./Components/Login Register/Login";
+import Register from "./Components/Login Register/Register";
 
 function App() {
   return (
     <>
-      <h1>APP.jsx</h1>
+      {/* <Consultation /> */}
+      <Login />
+      <Register />
     </>
   );
 }
