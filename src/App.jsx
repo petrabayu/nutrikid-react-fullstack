@@ -1,9 +1,10 @@
 import "./App.css";
+import ArticleMain from "./Pages/ArticleMain";
 
 function App() {
   return (
     <>
-      <h1>APP.jsx</h1>
+      <ArticleMain/>
     </>
   );
 }
