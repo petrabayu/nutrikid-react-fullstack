@@ -11,6 +11,9 @@ import ProgramDetailPage from "./Pages/ProgramEvent/ProgramDetailPage";
 import ProgramPage from './Pages/ProgramEvent/ProgramPage';
 import HomePage from './Pages/HomePage';
 import NavbarFooter from './Layouts/NavbarFooterLayout'
+import ArticleMain from './Pages/ArticleMain';
+import ArticleDetail from './Pages/ArticleDetail';
+import ArticleInput from './Pages/ArticleInput';
 
 function App() {
   return (
@@ -25,9 +28,14 @@ function App() {
                 <Route path="program/1" element={<ProgramDetailPage />} />
                 <Route path="program/1/1" element={<ProgramPage />} />
                 <Route path="konsultasi" element={<Consultation />} />
+                <Route path="artikel" element={<ArticleMain />} />
               </Route>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Register />} />
+              <Route path="detail" element={<ArticleDetail />} />
+              <Route path="input" element={<ArticleInput />} />
+              
+
         </Routes>
       </BrowserRouter>    
       

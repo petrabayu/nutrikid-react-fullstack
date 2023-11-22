@@ -7,8 +7,8 @@ function ArticleMain() {
     <>
     <SearchArticle/>
     <section id="gallery">
-        <div class="container">
-            <div class="row">
+        <div className="container">
+            <div className="row">
                 <CardArticle/>
                 <CardArticle/>
                 <CardArticle/>
