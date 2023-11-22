@@ -75,6 +75,10 @@
     align-items: center;
 }
 
+a.ctatext {
+    text-decoration: none;
+}
+
 /* Program Section */
 
 .programbox {

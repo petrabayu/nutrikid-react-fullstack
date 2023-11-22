@@ -42,8 +42,8 @@ function NavbarPage() {
               <Nav>
                 <div id="container">
                   <div className="buttonbox">
-                    <div className="login"><a href="login.html">Login</a></div>
-                    <div className="signup"><a href="signup.html">Sign Up</a></div>
+                    <div className="login"><a href="login">Login</a></div>
+                    <div className="signup"><a href="signup">Sign Up</a></div>
                   </div>
                 </div>
               </Nav>

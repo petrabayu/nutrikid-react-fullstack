@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import "./App.css";
 import Consultation from "./Pages/Consultation";
-import Login from "./Components/Login Register/Login";
-import Register from "./Components/Login Register/Register";
+import Login from "./Components/LoginRegister/Login";
+import Register from "./Components/LoginRegister/Register";
 
 import ProgramDisplayPage from "./Pages/ProgramEvent/ProgramDisplayPage";
 import EventDetailPage from "./Pages/ProgramEvent/EventDetailPage";
@@ -20,19 +20,17 @@ function App() {
         <Routes>
               <Route path='/' element ={<NavbarFooter />}>
                 <Route path="/" element={<HomePage />}/>
-                <Route path="/Program" element={<ProgramDisplayPage />} />
-                <Route path="/events/1" element={<EventDetailPage />} />
-                <Route path="/program/1" element={<ProgramDetailPage />} />
-                <Route path="/program/1/1" element={<ProgramPage />} />
+                <Route path="Program" element={<ProgramDisplayPage />} />
+                <Route path="events/1" element={<EventDetailPage />} />
+                <Route path="program/1" element={<ProgramDetailPage />} />
+                <Route path="program/1/1" element={<ProgramPage />} />
+                <Route path="konsultasi" element={<Consultation />} />
               </Route>
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Register />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter>    
       
-
-      {/* <Consultation /> */}
-      <Login />
-      <Register />
-
     </>
   );
 }

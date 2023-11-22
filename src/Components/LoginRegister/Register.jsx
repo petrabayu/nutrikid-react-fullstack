@@ -81,7 +81,7 @@ export default function Register() {
                 </button>
                 <div className="my-2 text-center">
                   <p>
-                    Sudah memiliki akun? <a href="./login.html">Login</a>
+                    Sudah memiliki akun? <a href="login">Login</a>
                   </p>
                 </div>
               </form>

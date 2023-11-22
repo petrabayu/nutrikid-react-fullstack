@@ -12,7 +12,7 @@ function Banner() {
                 Konsultasi Bersama Konsultan Nutrikid yang Berpengalaman
                 </div>
                 <div className="cta">
-                <div className="ctatext">Konsultasi Sekarang</div>
+                <div className="ctatext"><a href="konsultasi" className="ctatext">Konsultasi Sekarang</a></div>
                 </div>
             </div>
         </section>
