@@ -17,11 +17,11 @@ function NavbarPage() {
   
     return (
       <>
-        <Navbar collapseOnSelect expand="lg" className='navbar navigation bar'>
+        <Navbar collapseOnSelect expand="lg" id="navbar">
           <Container>
-            <Navbar.Brand 
+            <Navbar.Brand
             onClick={() => handleTextClick(-1)}
-            href="#" className='navbar-brand'><img className="logo" src="/nutrikid-logo/nutrikid-with-text-landscape-blue-png.png" alt="logo" /></Navbar.Brand>
+            href="/" className='navbar-brand'><img className="logo" src="/nutrikid-logo/nutrikid-with-text-landscape-blue-png.png" alt="logo" /></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto nav-item"
@@ -29,15 +29,15 @@ function NavbarPage() {
                 <Nav.Link
                 onClick={() => handleTextClick(0)}
                 style={{ color: textColors[0]}}
-                id='nav-link' href="#program">Program</Nav.Link>
+                id='nav-link' href="program">Program</Nav.Link>
                 <Nav.Link
                 onClick={() => handleTextClick(1)}
                 style={{ color: textColors[1]}}
-                id='nav-link' href="#konsultasi">Konsultasi</Nav.Link>
+                id='nav-link' href="konsultasi">Konsultasi</Nav.Link>
                 <Nav.Link
                 onClick={() => handleTextClick(2)}
                 style={{ color: textColors[2]}}
-                id='nav-link' href="#artikel">Artikel</Nav.Link>
+                id='nav-link' href="artikel">Artikel</Nav.Link>
               </Nav>
               <Nav>
                 <div id="container">

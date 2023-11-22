@@ -1,7 +1,6 @@
 import { FaYoutube } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa6";
 
 
 
@@ -82,7 +81,6 @@ function Footer() {
                       <li className=""><a title="Youtube" href="https://youtube.com" target="_blank" rel="noreferrer"><FaYoutube style={{height:"30px", width:"30px", color:"red"}}/></a></li>
                       <li className=""><a href="https://facebook.com" target="_blank" title="Facebook" rel="noreferrer"><FaFacebook style={{height:"30px", width:"30px", color:"blue"}}/></a></li>
                       <li className=""><a href="https://x.com" target="_blank" title="Linkedin" rel="noreferrer"><FaSquareXTwitter style={{height:"30px", width:"30px", color:"black"}}/></a></li>
-                      <li className=""><a href="https://instagram.com" target="_blank" title="Linkedin" rel="noreferrer"><FaInstagram style={{height:"30px", width:"30px", color:"black"}} /></a></li>
                     </ul>  
                   </div>
                   </div>
