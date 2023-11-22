@@ -2,16 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchComments, likeComment } from '../../../redux/reducer/commentslicer';
-import { fetchArticles, selectArticleById } from '../../../redux/reducer/articleslicer';
 
-function CommentsContent() {
+const CommentsContent = () => {
   // Use useDispatch hook to dispatch actions
   const dispatch = useDispatch();
 
   // Use useSelector hook to select the comments, status, and error from the state
-  const {article,comments} = useSelector((state) =>
-  selectArticleById(state, parseInt(match.params.id)), state.comments.comments
-  );
+  const {comments} = useSelector((state) => state.comments.comments);
   const status = useSelector((state) => state.article.comments.status);
   const error = useSelector((state) => state.article.comments.error);
 
