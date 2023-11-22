@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import "./App.css";
+import Consultation from "./Pages/Consultation";
+import Login from "./Components/Login Register/Login";
+import Register from "./Components/Login Register/Register";
 
 import ProgramDisplayPage from "./Pages/ProgramEvent/ProgramDisplayPage";
 import EventDetailPage from "./Pages/ProgramEvent/EventDetailPage";
@@ -12,6 +15,7 @@ import NavbarFooter from './Layouts/NavbarFooterLayout'
 function App() {
   return (
     <>
+
       <BrowserRouter>
         <Routes>
               <Route path='/' element ={<NavbarFooter />}>
@@ -24,6 +28,11 @@ function App() {
         </Routes>
       </BrowserRouter>
       
+
+      {/* <Consultation /> */}
+      <Login />
+      <Register />
+
     </>
   );
 }
