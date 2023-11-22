@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-function CardArticle() {
+const CardArticle = ({article}) => {
+
    // Destructure the article object
    const { id, image, author, title, content } = article;
 
@@ -37,7 +38,7 @@ function CardArticle() {
   );
 };
 
-ArticleCard.propTypes = {
+CardArticle.propTypes = {
   article: PropTypes.shape({
     id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,

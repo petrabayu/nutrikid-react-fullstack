@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchArticles, selectArticleById } from './articleSlice';
-import PropTypes from 'prop-types';
+import { fetchArticles, selectArticleById } from '../../../redux/reducer/articleslicer';
 
 const ArticleContent = ({match}) => {
   // Use the useDispatch hook to access the redux store
@@ -24,7 +23,10 @@ const ArticleContent = ({match}) => {
 
   return (
     <div id="article-content">
-      
+      {status === 'loading' && <p>Loading...</p>}
+      {status === 'failed' && <p>Error: {error}</p>}
+      {status === 'succeeded' && article && (
+        <>
         <article className="container nutrikid-container">
           <h1 className="fw-bold">{article.title}
           </h1>
@@ -49,24 +51,10 @@ const ArticleContent = ({match}) => {
               (Illustrasi oleh: Unsplash)
             </figcaption>
           </figure>
-          <p>
-            Kehamilan adalah salah satu fase paling penting dalam kehidupan
-            seorang perempuan. Selama periode ini, penting untuk merawat tubuh
-            dan pikiran agar bayi dapat tumbuh dengan sehat. Salah satu cara
-            yang sangat efektif untuk mencapai ini adalah melalui praktik yoga.
-            Senam yoga untuk ibu hamil adalah metode olahraga dan relaksasi yang
-            menggabungkan gerakan tubuh dengan latihan pernapasan dan meditasi.
-            Berikut adalah beberapa manfaat penting dari senam yoga untuk ibu
-            hamil:
-          </p>
-          <p>
-            <strong> 1. Meningkatkan Fleksibilitas dan Kekuatan </strong><br />
-            Praktik yoga membantu ibu hamil meningkatkan fleksibilitas tubuh.
-            Peregangan dan gerakan dalam yoga membantu mengurangi ketegangan
-            otot, meningkatkan sirkulasi darah, dan memelihara kekuatan
-            otot-otot yang penting selama kehamilan.
-          </p>
+          <p>{article.content}</p>
         </article> 
+        </>
+      )}
     </div>
   )
 }

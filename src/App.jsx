@@ -1,10 +1,12 @@
 import "./App.css";
-import ArticleMain from "./Pages/ArticleMain";
+import Comments from "./Components/Articles/comments/Comments";
+import ArticleDetail from "./Pages/ArticleDetail";
+import ArticleInput from "./Pages/ArticleInput";
 
 function App() {
   return (
     <>
-      <ArticleMain/>
+      <Comments/>
     </>
   );
 }

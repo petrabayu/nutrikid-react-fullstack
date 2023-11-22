@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postArticle } from './articleSlice';
+import { postArticle } from '../redux/reducer/articleslicer';
 
 function ArticleInput() {
    // Use the useDispatch hook to access the redux store

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchComments, likeComment } from '../../../redux/reducer/commentslicer';
-import { fetchArticles, selectArticleById } from './articleSlice';
+import { fetchArticles, selectArticleById } from '../../../redux/reducer/articleslicer';
 
 function CommentsContent() {
   // Use useDispatch hook to dispatch actions

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { postComment } from '../../../redux/reducer/commentslicer';
 
-function InputComment() {
+const InputComment = (props) => {
   // Use useState hook to manage the comment text
   const [comment, setComment] = useState('');
 
