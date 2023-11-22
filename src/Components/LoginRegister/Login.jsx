@@ -60,7 +60,7 @@ export default function Login() {
                 </button>
                 <div className="my-2 text-center">
                   <p>
-                    Belum memiliki akun? <a href="./signup.html">Sign Up</a>
+                    Belum memiliki akun? <a href="signup">Sign Up</a>
                   </p>
                 </div>
               </form>
