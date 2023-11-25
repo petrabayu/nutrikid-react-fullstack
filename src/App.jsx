@@ -1,12 +1,13 @@
 import "./App.css";
-import Comments from "./Components/Articles/comments/Comments";
-import ArticleDetail from "./Pages/ArticleDetail";
+import ArticleContent from "./Pages/ArticleContent";
 import ArticleInput from "./Pages/ArticleInput";
+import ArticleSearch from "./Pages/ArticleSearch";
+
 
 function App() {
   return (
     <>
-      <Comments/>
+      <ArticleSearch/>
     </>
   );
 }

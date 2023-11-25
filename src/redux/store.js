@@ -1,10 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import commentslicer from './reducer/commentslicer'
-import articleslicer from './reducer/articleslicer'
+// This is the store.js file that creates the redux store and applies the middleware
+import { configureStore } from "@reduxjs/toolkit";
+import articleReducer from "./reducer/articleslicer";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    comments: commentslicer,
-    article: articleslicer,
+    article: articleReducer,
   },
-})
+});
+
+export default store;
