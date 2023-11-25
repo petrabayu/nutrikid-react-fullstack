@@ -2,9 +2,41 @@ import Media from "react-media";
 import LoginImage from "./Images/background-item-login.png";
 import NutrikidLogo from "../../../public/nutrikid-logo/nutrikid-text-only-blue-svg.svg";
 import LeftBox from "./LeftBox";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 export default function Login() {
+  const history = useNavigate();
+
+  const apiLogin = "http://localhost:3000/login";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [error, setError] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    // if (password !== confirmPassword) {
+    //   setError("Password dan Konfirmasi Password harus sama");
+    //   return;
+    // }
+
+    try {
+      const response = await axios.post(apiLogin, {
+        email,
+        password,
+      });
+
+      console.log("Login Successful:", response.data);
+      history("/");
+    } catch (error) {
+      console.error("Login Failed:", error.message);
+      // Mungkin tambahkan logika untuk menampilkan pesan kesalahan kepada pengguna
+    }
+  };
+
   return (
     <>
       {/* --------------------- MAIN CONTAINER --------------------- */}
@@ -19,7 +51,12 @@ export default function Login() {
           {/*  --------------------- RIGHT BOX ---------------------  */}
           <div className="col-md rounded-4 mx-2 vh-50">
             <div className="">
-              <form id="login-form" action="index.html" className="">
+              <form
+                method="POST"
+                id="login-form"
+                action="index.html"
+                className=""
+              >
                 <img
                   src={NutrikidLogo}
                   alt=""
@@ -37,6 +74,8 @@ export default function Login() {
                     id="email"
                     placeholder="Masukkan Email Anda"
                     pattern=".+[a-zA-Z].+@.+\..{3}"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -47,6 +86,8 @@ export default function Login() {
                     className="form-control border-success"
                     id="password"
                     placeholder="Masukkan Password Anda"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </div>
@@ -55,6 +96,7 @@ export default function Login() {
                   className="btn btn-primary w-100 py-2"
                   id="login-btn"
                   type="submit"
+                  onClick={handleLogin}
                 >
                   Login
                 </button>
