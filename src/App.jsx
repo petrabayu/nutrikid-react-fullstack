@@ -11,7 +11,7 @@ import ProgramDetailPage from "./Pages/ProgramEvent/ProgramDetailPage";
 import ProgramPage from './Pages/ProgramEvent/ProgramPage';
 import HomePage from './Pages/HomePage';
 import NavbarFooter from './Layouts/NavbarFooterLayout'
-import ArticleMain from './Pages/ArticleMain';
+import ArticleSearch from './Pages/ArticleSearch';
 import ArticleDetail from './Pages/ArticleDetail';
 import ArticleInput from './Pages/ArticleInput';
 
@@ -28,7 +28,7 @@ function App() {
                 <Route path="program/1" element={<ProgramDetailPage />} />
                 <Route path="program/1/1" element={<ProgramPage />} />
                 <Route path="konsultasi" element={<Consultation />} />
-                <Route path="artikel" element={<ArticleMain />} />
+                <Route path="artikel" element={<ArticleSearch />} />
               </Route>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Register />} />
