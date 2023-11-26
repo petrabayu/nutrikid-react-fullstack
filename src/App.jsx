@@ -14,6 +14,7 @@ import NavbarFooter from './Layouts/NavbarFooterLayout'
 import ArticleMain from './Pages/ArticleMain';
 import ArticleDetail from './Pages/ArticleDetail';
 import ArticleInput from './Pages/ArticleInput';
+import AdminDashboard from './Pages/Dashboard/AdminDashboard';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <Route path="signup" element={<Register />} />
               <Route path="detail" element={<ArticleDetail />} />
               <Route path="input" element={<ArticleInput />} />
+              <Route path="dashboard" element={<AdminDashboard />} />
               
 
         </Routes>
