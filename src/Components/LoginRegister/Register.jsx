@@ -29,17 +29,31 @@ export default function Register() {
                   className="mx-auto my-2 d-block"
                 />
                 <h1 className="text-center fs-2">Sign Up</h1>
-                <div className="mb-2">
-                  <label className="form-label mb-1">Nama</label>
+                <div className="row mt-2 mb-2">
+                <div className="col-6">
+                  <label className="form-label">Nama Depan</label>
                   <input
-                    id="name"
+                    id="fistname"
                     type="text"
-                    name="name"
-                    className="form-control form-control-sm border-success"
-                    placeholder="Masukkan Nama Anda"
+                    name="firstname"
+                    className="form-control form-control-sm border-success p-2"
+                    placeholder="Nama Depan"
                     required
                   />
                 </div>
+                <div className="col-6">
+                  <label className="form-label">Nama Belakang</label>
+                  <input
+                    id="lastname"
+                    type="text"
+                    name="lastname"
+                    className="form-control form-control-sm border-success p-2"
+                    placeholder="Nama Belakang"
+                    required
+                  />
+                </div>
+                </div>
+                
                 <div className="mb-2">
                   <label className="form-label">Email</label>
                   <input

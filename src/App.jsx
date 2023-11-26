@@ -12,7 +12,7 @@ import ProgramPage from './Pages/ProgramEvent/ProgramPage';
 import HomePage from './Pages/HomePage';
 import NavbarFooter from './Layouts/NavbarFooterLayout'
 import ArticleSearch from './Pages/ArticleSearch';
-import ArticleDetail from './Pages/ArticleDetail';
+import ArticleContent from './Pages/ArticleContent';
 import ArticleInput from './Pages/ArticleInput';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
               </Route>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Register />} />
-              <Route path="detail" element={<ArticleDetail />} />
+              <Route path="detail" element={<ArticleContent />} />
               <Route path="input" element={<ArticleInput />} />
               
 
