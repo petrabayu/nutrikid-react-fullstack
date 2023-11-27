@@ -10,9 +10,9 @@ import "./login.css";
 export default function Register() {
   const history = useNavigate();
 
-  const apiRegister = "http://localhost:3000/register";
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const apiRegister = "http://localhost:3001/api/auth/signup";
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -28,9 +28,10 @@ export default function Register() {
 
     try {
       const response = await axios.post(apiRegister, {
-        username,
-        password,
+        firstname,
+        lastname,
         email,
+        password,
       });
 
       console.log("Registration Successful:", response.data);
@@ -78,8 +79,8 @@ export default function Register() {
                       name="firstname"
                       className="form-control border-success p-2"
                       placeholder="Nama Depan"
-                      value={firstName}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={firstname}
+                      onChange={(e) => setFirstname(e.target.value)}
                       required
                     />
                   </div>
@@ -91,8 +92,8 @@ export default function Register() {
                       name="lastname"
                       className="form-control border-success p-2"
                       placeholder="Nama Belakang"
-                      value={lastName}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={lastname}
+                      onChange={(e) => setLastname(e.target.value)}
                       required
                     />
                   </div>
@@ -128,7 +129,7 @@ export default function Register() {
                   <input
                     type="password"
                     className="form-control border-success"
-                    id="password"
+                    id="confirm-password"
                     placeholder="Konfirmasi Password Anda"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}

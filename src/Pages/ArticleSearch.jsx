@@ -5,9 +5,9 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from "react-redux";
 import { fetchArticles, searchArticles } from "../redux/reducer/articleslicer";
 import ArticleCard from "../Components/Articles/articleContent/ArticleCard";
-import PropTypes from "prop-types"; // import the prop-types library
 
-const ArticleSearch = () => {
+
+const ArticleSearch = (props) => {
   const [search, setSearch] = useState(""); // the local state for the search input
   const articles = useSelector((state) => state.article.articles); // the articles from the redux store
   const status = useSelector((state) => state.article.status); // the status of the fetchArticles async action
@@ -62,26 +62,6 @@ const ArticleSearch = () => {
   );
 };
 
-// This is the prop-types validation for the SearchArticle component
-ArticleSearch.propTypes = {
-  articles: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      comments: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          username: PropTypes.string.isRequired,
-          comment: PropTypes.string.isRequired,
-        })
-      ).isRequired,
-    })
-  ).isRequired,
-  status: PropTypes.oneOf(["idle", "loading", "succeeded", "failed"]).isRequired,
-  error: PropTypes.string,
-};
+
 
 export default ArticleSearch;
