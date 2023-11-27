@@ -88,7 +88,9 @@ const ArticleInput = () => {
           <div className="mb-3">
             <label for="image" className="form-label">Image</label>
             <input
-              type="image"
+              id="image"
+              className="form-control"
+              type="text"
               value={image}
               onChange={handleImageChange}
               placeholder="Enter the image URL"
