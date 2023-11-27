@@ -10,7 +10,7 @@ import "./login.css";
 export default function Register() {
   const history = useNavigate();
 
-  const apiRegister = "http://localhost:3001/api/auth/signup";
+  const apiRegister = "http://localhost:5001/api/auth/signup";
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
@@ -35,7 +35,7 @@ export default function Register() {
       });
 
       console.log("Registration Successful:", response.data);
-      history("/login");
+      history("login");
     } catch (error) {
       console.error("Registration Failed:", error.message);
       // Mungkin tambahkan logika untuk menampilkan pesan kesalahan kepada pengguna

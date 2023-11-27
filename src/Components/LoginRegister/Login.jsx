@@ -10,7 +10,7 @@ import "./login.css";
 export default function Login() {
   const history = useNavigate();
 
-  const apiLogin = "http://localhost:3000/login";
+  const apiLogin = "http://localhost:5001/auth/login";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [error, setError] = useState("");
