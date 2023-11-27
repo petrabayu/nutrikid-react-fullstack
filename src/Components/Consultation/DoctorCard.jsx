@@ -1,6 +1,7 @@
 import DoctorPofile from "./images/doctor-profile.jpg";
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 import { FaPhone, FaMessage } from "react-icons/fa6";
 import OfflineStatus from "./OfflineStatus";
@@ -29,10 +30,6 @@ function DoctorCard({ doctor }) {
     setShowPaymentDetails(false);
     setSelectedService("");
   };
-
-  // const handlePaymentSuccess = () => {
-  //   history("/payment");
-  // };
 
   return (
     <>
@@ -89,7 +86,7 @@ function DoctorCard({ doctor }) {
             </button>
           </div>
 
-          {showPaymentDetails && (
+          {/* {showPaymentDetails && (
             <PaymentDetailCard
               doctorName={username}
               service={selectedService}
@@ -97,7 +94,29 @@ function DoctorCard({ doctor }) {
               onClose={handleClosePaymentDetails}
               // onPaymentSuccess={handlePaymentSuccess}
             />
-          )}
+          )} */}
+
+          <Modal show={showPaymentDetails} onHide={handleClosePaymentDetails}>
+            <Modal.Header className="bg-info" closeButton>
+              <Modal.Title className="fw-bold">Detail Pembayaran</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <PaymentDetailCard
+                doctorName={username}
+                spesialist={spesialist}
+                service={selectedService}
+                price={selectedService === "Chat" ? price.chat : price.call}
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              {/* <Button variant="secondary" onClick={handleClosePaymentDetails}>
+                Tutup
+              </Button> */}
+              <Button variant="primary" onClick={handleClosePaymentDetails}>
+                Lanjutkan Pembayaran
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     </>
