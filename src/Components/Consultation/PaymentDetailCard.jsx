@@ -1,6 +1,11 @@
 import DoctorPofile from "./images/doctor-profile.jpg";
 
-export default function PaymentDetailCard() {
+export default function PaymentDetailCard({
+  doctorName,
+  service,
+  price,
+  onClose,
+}) {
   return (
     <>
       <div className="card col-md-6 mx-auto my-auto mt-4">
@@ -18,9 +23,7 @@ export default function PaymentDetailCard() {
               />
             </div>
             <div className="ms-4">
-              <h5 className="card-title fw-bold">
-                Dr. Tegar Simanjuntak Sp.THT-KL
-              </h5>
+              <h5 className="card-title fw-bold">{doctorName}</h5>
               <h5 className="card-title"> Dokter Umum</h5>
             </div>
           </div>
@@ -28,10 +31,10 @@ export default function PaymentDetailCard() {
           <div className="my-4">
             <p className="card-text my-1 d-flex justify-content-between">
               <span>
-                Biaya Konsultasi : <strong>Chat 30 Menit</strong>
+                Biaya Konsultasi : <strong>{service} 30 Menit</strong>
               </span>
               <span>
-                <strong>Rp.50.000</strong>
+                <strong>Rp.{price}</strong>
               </span>
             </p>
             <p className="card-text my-1 d-flex justify-content-between">
@@ -51,6 +54,9 @@ export default function PaymentDetailCard() {
           </div>
 
           <div className="d-grid">
+            <button className="btn btn-secondary" onClick={onClose}>
+              Tutup
+            </button>
             <button className="btn btn-primary d-grid">
               Lanjutkan Pembayaran
             </button>
