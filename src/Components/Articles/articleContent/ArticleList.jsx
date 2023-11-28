@@ -36,7 +36,7 @@ function ArticleList() {
                     <h5 className="card-title font-weight-bold">{dataObj.title}</h5>
                     <p className="card-subtitle">{dataObj.author.firstname}</p>
                     <p className="col-2 text-truncate">
-                        {truncate(dataObj.content.split(" ").slice(0, 20).join(" "), 100)}
+                        {truncate(dataObj.content.replace(/<[^>]+>/g,'').split(" ").slice(0, 20).join(" "), 100)}
                     </p>
                     <Link
                         className="read-more-button"
