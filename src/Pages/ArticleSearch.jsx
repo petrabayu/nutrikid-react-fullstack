@@ -25,6 +25,20 @@ const ArticleSearch = (props) => {
     dispatch(searchArticles(search)); // dispatch the searchArticles action with the search query
   };
 
+  const renderArticleCards = () => {
+    // create an empty array to store the article cards
+    let articleCards = [];
+    // loop through the articles array
+    for (let i = 0; i < articles.length; i++) {
+      // create an article card component for each article
+      let articleCard = <ArticleCard key={articles[i].id} article={articles[i]} />;
+      // push the article card component to the article cards array
+      articleCards.push(articleCard);
+    }
+    // return the article cards array
+    return articleCards;
+  };
+
   // This effect runs once when the component mounts and dispatches the fetchArticles action
   useEffect(() => {
     dispatch(fetchArticles());
@@ -52,10 +66,7 @@ const ArticleSearch = (props) => {
       
       <div className="article-list mt-5 d-flex justify-content-center">
         {status === "loading" && <p>Loading...</p>}
-        {status === "succeeded" &&
-          articles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
+        {status === "succeeded" && renderArticleCards()} 
         {status === "failed" && <p>{error}</p>}
       </div>
     </div>

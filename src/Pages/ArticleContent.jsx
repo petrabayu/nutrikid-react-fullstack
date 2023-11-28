@@ -34,7 +34,7 @@ const ArticleContent = () => {
     const fetchUser = async () => {
       try {
         // make a GET request to the API login with the user id
-        const response = await axios.get(`/api/login/${id}`);
+        const response = await axios.get(`http://localhost:3001/api/users/`);
         // set the user state with the response data
         setUser(response.data);
         // set the username state with the response data username
@@ -53,9 +53,9 @@ const ArticleContent = () => {
       {article ? (
         <>
           <section id="article-content">
-            <h1 className="fw-bold">{article.title}</h1>
-            <p>By {article.author}</p>
-            <h6 className="time-desctiption">Created on {article.date}</h6>
+            <h1 className="fw-bold">{title}</h1>
+            <p>By {author}</p>
+            <h6 className="time-desctiption">Created on {createdAt}</h6>
             <div class="container p-0 my-3 d-flex justify-content-end">
               <a href=""
                 ><i class="bi bi-whatsapp mx-2 nutrikid-icon-size"></i
@@ -71,12 +71,12 @@ const ArticleContent = () => {
               ></a>
             </div>
             <figure class="text-center">
-              <img src={article.image} alt="Article image" />
+              <img src={image} alt="Article image" />
               <figcaption class="text-center fw-semibold nutrikid-caption">
-                  {article.title}(Illustrasi oleh: Unsplash)
+                  {title}(Illustrasi oleh: Unsplash)
               </figcaption>
             </figure>
-            <p>{article.content}</p>
+            <p>{content}</p>
           </section>
 
           
