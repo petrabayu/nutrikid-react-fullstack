@@ -8,10 +8,10 @@ function DoctorList() {
   useEffect(() => {
     // Panggil API untuk mendapatkan data dokter
     axios
-      .get("http://localhost:3000/doctors")
+      .get("http://localhost:3001/api/users/doctors")
       .then((response) => {
         const sortedDoctors = response.data.sort(
-          (a, b) => b.activeStatus - a.activeStatus
+          (a, b) => b.isOnline - a.isOnline
         );
         setDoctors(sortedDoctors);
       })

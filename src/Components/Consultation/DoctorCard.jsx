@@ -9,10 +9,12 @@ import OnlineStatus from "./OnlineStatus";
 import PaymentDetailCard from "./PaymentDetailCard";
 
 function DoctorCard({ doctor }) {
-  const { username, price, spesialist, activeStatus } = doctor;
+  const { first_name, last_name, price, specialist, isOnline, image } = doctor;
 
   const [showPaymentDetails, setShowPaymentDetails] = useState(false);
   const [selectedService, setSelectedService] = useState("");
+
+  const fullname = first_name + " " + last_name;
 
   // const history = useNavigate();
 
@@ -36,20 +38,20 @@ function DoctorCard({ doctor }) {
       <div className="card m-1 my-2 text-center" style={{ maxWidth: "22rem" }}>
         <div>
           <img
-            src={DoctorPofile}
+            src={image}
             className="card-img-top rounded-circle mt-2 mx-auto"
             alt="Doctor's Profile"
             style={{ width: "9rem" }}
           />
         </div>
         <div className="card-body ">
-          <h6 className="card-title fw-bold">{username}</h6>
+          <h6 className="card-title fw-bold">{fullname}</h6>
           <p className="card-subtitle text-body-secondary small mb-2 ">
-            {spesialist}
+            {specialist}
           </p>
 
           {/* staus online offline */}
-          {activeStatus ? <OnlineStatus /> : <OfflineStatus />}
+          {isOnline ? <OnlineStatus /> : <OfflineStatus />}
           {/* 
           <p className="card-text bg-warning rounded bg-opacity-50 m-0">
             <small className="text-body-secondary">
@@ -70,7 +72,7 @@ function DoctorCard({ doctor }) {
           <div className="d-flex">
             <button
               className="btn btn-primary w-50 me-1"
-              disabled={!activeStatus}
+              disabled={!isOnline}
               onClick={handleChatClick}
             >
               <FaMessage style={{ fontSize: "1.5rem", marginRight: "12px" }} />
@@ -78,7 +80,7 @@ function DoctorCard({ doctor }) {
             </button>
             <button
               className="btn btn-secondary w-50 ms-1"
-              disabled={!activeStatus}
+              disabled={!isOnline}
               onClick={handleCallClick}
             >
               <FaPhone style={{ fontSize: "1.5rem", marginRight: "12px" }} />
@@ -88,7 +90,7 @@ function DoctorCard({ doctor }) {
 
           {/* {showPaymentDetails && (
             <PaymentDetailCard
-              doctorName={username}
+              doctorName={firstname,lastname}
               service={selectedService}
               price={selectedService === "Chat" ? price.chat : price.call}
               onClose={handleClosePaymentDetails}
@@ -102,8 +104,8 @@ function DoctorCard({ doctor }) {
             </Modal.Header>
             <Modal.Body>
               <PaymentDetailCard
-                doctorName={username}
-                spesialist={spesialist}
+                doctorName={fullname}
+                specialist={specialist}
                 service={selectedService}
                 price={selectedService === "Chat" ? price.chat : price.call}
               />
