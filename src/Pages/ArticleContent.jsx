@@ -84,9 +84,9 @@ const ArticleContent = () => {
             </Card.Subtitle>
             <Card.Title style={{ fontSize: "2em" }}>{card.title}</Card.Title>
             <p>diupload pada {card.createdAt}</p>
-            {/* <Card.Subtitle className="mb-2 text-muted">
-              {JSON.stringify(card.author.fullname)}
-           </Card.Subtitle>  */}
+            <Card.Subtitle className="mb-2 text-muted">
+              {card.author?.fullname}
+           </Card.Subtitle>
           </Card.Header>
           <Card.Img variant="top img-fluid" src={card.image} />
           <Card.Body>
