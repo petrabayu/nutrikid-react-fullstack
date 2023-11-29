@@ -34,7 +34,7 @@ export default function Register() {
         email,
         password,
       });
-
+      
       if (response.status === 201) {
         // Registrasi berhasil
         const token = response.data.token;

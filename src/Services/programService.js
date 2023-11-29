@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL_API = 'http://localhost:5001/api/programs';
+const BASE_URL_API = 'http://localhost:3001/api/programs';
 
 // Action types
 export const SET_PROGRAMS = 'SET_PROGRAMS';

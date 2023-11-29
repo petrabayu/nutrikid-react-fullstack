@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL_API = 'http://localhost:5001/api/lesson';
+const BASE_URL_API = 'http://localhost:3001/api/lesson';
 
 // Action types
 export const SET_LESSONS = 'SET_LESSONS';

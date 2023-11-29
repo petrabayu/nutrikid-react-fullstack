@@ -12,11 +12,13 @@ function NavbarPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [firstname, setFirstname] = useState("");
 
+
   const handleTextClick = (index) => {
     const updatedColors = textColors.map((color, i) =>
       i === index ? "black" : ""
     );
     setTextColors(updatedColors);
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -31,6 +33,7 @@ function NavbarPage() {
         setIsLoggedIn(false);
       }
     };
+    
 
     const token = Cookies.get("token");
     // const decoded = jwtDecode(token);
@@ -58,39 +61,39 @@ function NavbarPage() {
         <Container>
           <Navbar.Brand
             onClick={() => handleTextClick(-1)}
-            href="/"
             className="navbar-brand"
-          >
+          ><Link to="/">
             <img
               className="logo"
               src="/nutrikid-logo/nutrikid-with-text-landscape-blue-png.png"
               alt="logo"
             />
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto nav-item">
               <Nav.Link
+                as={NavLink} to="program"
                 onClick={() => handleTextClick(0)}
                 style={{ color: textColors[0] }}
                 id="nav-link"
-                href="program"
               >
                 Program
               </Nav.Link>
               <Nav.Link
+                as={NavLink} to="konsultasi"
                 onClick={() => handleTextClick(1)}
                 style={{ color: textColors[1] }}
                 id="nav-link"
-                href="konsultasi"
               >
                 Konsultasi
               </Nav.Link>
               <Nav.Link
+              as={NavLink} to="artikel"
                 onClick={() => handleTextClick(2)}
                 style={{ color: textColors[2] }}
                 id="nav-link"
-                href="artikel"
               >
                 Artikel
               </Nav.Link>
@@ -117,10 +120,10 @@ function NavbarPage() {
                   ) : (
                     <>
                       <div className="login">
-                        <a href="login">Login</a>
+                      <Link to="login">Login</Link>
                       </div>
                       <div className="signup">
-                        <a href="signup">Sign Up</a>
+                      <Link to="login">Sign Up</Link>
                       </div>
                     </>
                   )}

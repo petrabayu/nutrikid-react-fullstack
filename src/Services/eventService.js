@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL_API = 'http://localhost:5001/api/events';
+const BASE_URL_API = 'http://localhost:3001/api/events';
 
 // Action types
 export const SET_EVENTS = 'SET_EVENTS';
