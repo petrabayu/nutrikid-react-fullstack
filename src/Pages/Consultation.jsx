@@ -1,32 +1,23 @@
 import About from "../Components/Consultation/About";
 import ConsultationCarousel from "../Components/Consultation/ConsultationCarousel";
-import DoctorCard from "../Components/Consultation/DoctorCard";
+import DoctorList from "../Components/Consultation/DoctorList";
+import LoginOrRegisterMessage from "../Components/Consultation/LoginOrRegisterMessage.jsx";
+import Cookies from "js-cookie";
 
 function Consultation() {
+  const token = Cookies.get("token");
+
+  
   return (
     <>
       <div className="container-fluid ">
         <div className="row ">
-          <div className="row m-0 mb-4 justify-content-center overflow-auto vh-100">
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-            <DoctorCard />
-          </div>
+          {token ? (
+            <DoctorList />
+          ) : (
+            // onLogout={handleLogout}
+            <LoginOrRegisterMessage />
+          )}
           <div className="m-0 p-0 mb-4">
             <ConsultationCarousel />
             <About />
