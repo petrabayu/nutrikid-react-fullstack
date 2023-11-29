@@ -1,11 +1,44 @@
-import Carousel from 'react-bootstrap/Carousel';
+// import Card from 'react-bootstrap/Card';
+// import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
 
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchEvents } from '../../Services/eventService';
+import { fetchPrograms } from '../../Services/programService';
+import EventCarousel from '../../Components/Events/EventCarousel';
+import ProgramCard from '../../Components/Programs/ProgramCard';
+// import Program from '../../Components/Homepages/Program';
 
 function ProgramDisplayPage() {
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+ 
+
+  const events = useSelector((state) => state.events.events);
+  const programs = useSelector((state) => state.programs.programs);
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+    dispatch(fetchPrograms());
+  }, [dispatch]);
+
+  const handleEventDetail = (eventId) => {
+    // Navigate to the event detail page with the specified event ID
+    navigate(`/events/${eventId}`);
+  };
+
+  const handleProgramDetail = (programId) => {
+    // Navigate to the event detail page with the specified event ID
+    navigate(`/program/${programId}`);
+  };
+
+  console.log(programs)
+
     return (
       <>
         <section className="d-flex align-items-center mt-5  mb-5 ms-5 me-5 gap-3">
@@ -26,33 +59,9 @@ function ProgramDisplayPage() {
               untuk meningkatkan wawasan dan perhatian orang tua dalam mencegah 
               masalah-masalah kesehatan Anak.</p>
           </div>
-          <div className='w-100'>
-            <Carousel style={{backgroundColor: "red"}}>
-              <Carousel.Item>
-              <img src="program/Fam.jpg"/>
-                <Carousel.Caption>
-                  <h3>First slide label</h3>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-              <img src="program/Fam.jpg"/>
-                <Carousel.Caption>
-                  <h3>Second slide label</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-              <img style={{borderRadius: "160px"}} src="program/Fam.jpg"/>
-                <Carousel.Caption>
-                  <h3>Third slide label</h3>
-                  <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            </Carousel>
-          </div>
+          <div className="w-100">
+          <EventCarousel events={events} onEventClick={handleEventDetail} />
+        </div>
         </section>
 
         <section className='mt-5 mb-5 ms-5 me-5 d-flex row gap-5 text-center'> 
@@ -60,11 +69,12 @@ function ProgramDisplayPage() {
             <h2>Program-Program penyuluhan dari NutriKid</h2>
           </div>
           <div>
-          <Row xs={1} md={2} className="g-4">
+            <ProgramCard programs={programs} onProgramClick={handleProgramDetail} />
+          {/* <Row xs={1} md={2} className="g-4">
             {Array.from({ length: 4 }).map((_, idx) => (
-              <Col key={idx}>
+              <Col key={idx} onClick={handleProgramDetail}>
                 <Card>
-                  <Card.Img variant="top" src="holder.js/100px160" />
+                  <Card.Img variant="top" src="/homepage/100days.png" />
                   <Card.Body>
                     <Card.Title>Card title</Card.Title>
                     <Card.Text>
@@ -76,7 +86,7 @@ function ProgramDisplayPage() {
                 </Card>
               </Col>
             ))}
-          </Row>
+          </Row> */}
           </div>
         </section>
       </>

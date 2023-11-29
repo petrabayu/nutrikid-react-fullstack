@@ -24,10 +24,10 @@ function App() {
         <Routes>
               <Route path='/' element ={<NavbarFooter />}>
                 <Route path="/" element={<HomePage />}/>
-                <Route path="Program" element={<ProgramDisplayPage />} />
-                <Route path="events/1" element={<EventDetailPage />} />
-                <Route path="program/1" element={<ProgramDetailPage />} />
-                <Route path="program/1/1" element={<ProgramPage />} />
+                <Route path="program" element={<ProgramDisplayPage />} />
+                <Route path="events/:eventId" element={<EventDetailPage />} />
+                <Route path="program/:programId" element={<ProgramDetailPage />} />
+                <Route path="program/:programId/:moduleId" element={<ProgramPage />} />
                 <Route path="konsultasi" element={<Consultation />} />
                 <Route path="artikel" element={<ArticleMain />} />
               </Route>

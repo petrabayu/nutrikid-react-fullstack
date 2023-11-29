@@ -3,18 +3,21 @@ import { Table, Modal, Button, Form } from 'react-bootstrap';
 
 const EventTab = () => {
   const [showModal, setShowModal] = useState(false);
+  const reader = new FileReader();
+  const [imagePreview, setImagePreview] = useState(null);
   const [newEvent, setNewEvent] = useState({
     title: '',
     organizer: '',
     description: '',
-    price: '',
+    price: Number,
     location: '',
     startDate: '',
     endDate: '',
-    image: null,
+    image:"",
   });
 
-  const events = [
+  const [events, setEvents] = useState([
+    // Initial events data
     {
       id: 1,
       title: 'Event 1',
@@ -35,9 +38,13 @@ const EventTab = () => {
       startDate: '2023-02-01',
       endDate: '2023-02-05',
     },
-  ];
+  ]);
 
-  const handleClose = () => setShowModal(false);
+  const handleClose = () => {
+    setShowModal(false);
+    setImagePreview(null);
+  };
+
   const handleShow = () => setShowModal(true);
 
   const handleInputChange = (e) => {
@@ -47,13 +54,48 @@ const EventTab = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setNewEvent((prevEvent) => ({ ...prevEvent, image: file }));
+    reader.readAsDataURL(file)
+    reader.onload = function () {
+      setImagePreview(reader.result);
+      setNewEvent((prevEvent) => ({ ...prevEvent, image: reader.result }));
+    };
+    
   };
 
-  const handleAddEvent = () => {
-    //validation or additional logic
+  const handleAddEvent = async () => {
+    // Validation or additional logic can be added here
+  
+    // Create a new event object with a unique ID
+    const newEventObject = {
+      id: events.length + 1, // You may want to use a more sophisticated ID generation method
+      ...newEvent,
+    };
+  
+    // Update the events state with the new event
+    setEvents((prevEvents) => [...prevEvents, newEventObject]);
     console.log('New Event:', newEvent);
+  
+    // Close the modal
     handleClose();
+  
+    try {
+      // Send the new event data to your local API
+      const response = await fetch('http://localhost:5001/api/events', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEvent),
+      });
+  
+      if (response.ok) {
+        console.log('Event added successfully to the API.');
+      } else {
+        console.error('Failed to add event to the API.');
+      }
+    } catch (error) {
+      console.error('Error when sending data to the API:', error);
+    }
   };
 
   return (
@@ -172,6 +214,7 @@ const EventTab = () => {
             <Form.Group controlId="formImage">
               <Form.Label>Event Image</Form.Label>
               <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
+              {imagePreview && <img src={imagePreview} alt="Image Preview" style={{ maxWidth: '100%' }} />}
             </Form.Group>
           </Form>
         </Modal.Body>
