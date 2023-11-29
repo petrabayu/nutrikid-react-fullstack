@@ -14,7 +14,6 @@ import NavbarFooter from './Layouts/NavbarFooterLayout'
 import ArticleSearch from './Pages/ArticleSearch';
 import ArticleContent from './Pages/ArticleContent';
 import ArticleInput from './Pages/ArticleInput';
-import ArticleList from './Components/Articles/articleContent/ArticleList';
 
 
 function App() {
@@ -30,14 +29,13 @@ function App() {
                 <Route path="program/1" element={<ProgramDetailPage />} />
                 <Route path="program/1/1" element={<ProgramPage />} />
                 <Route path="konsultasi" element={<Consultation />} />
-                <Route path="artikel" element={<ArticleSearch />} />
+                <Route path="artikel/*" element={<ArticleSearch />}/>
+                <Route path="/artikel/:id" render={(props) => <ArticleContent {...props} cards={cards}/>} element={<ArticleContent/>}/>
               </Route>
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Register />} />
-              <Route path="detail" element={<ArticleList />} />
+              <Route path="detail" element={<ArticleContent/>} />
               <Route path="input" element={<ArticleInput />} />
-              
-
         </Routes>
       </BrowserRouter>    
       

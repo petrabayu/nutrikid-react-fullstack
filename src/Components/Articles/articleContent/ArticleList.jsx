@@ -19,39 +19,31 @@ function ArticleList() {
   }, []);
 
   return (
-    <div className="article-list">
-      <center>
+    <div className="row row-cols-2 justify-content-center m-3">
         {data.map((dataObj, index) => { 
           return (
-            <div className="article-card" key={dataObj._id}>
-            <div className="container mt-2 mb-2">
-                <div className="card">
-                    <div className="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                    <img src={dataObj.image} className="img-fluid" />
-                    <a href="#!">
-                        <div className="mask" style={{backgroundColor: "rgba(251, 251, 251, 0.15)"}}></div>
-                    </a>
-                    </div>
+            <div className="col mt-5" key={dataObj._id}>
+                <div className="card ">
+                    <img src={dataObj.image} className="card-img-top img-fluid" />
                     <div className="card-body">
-                    <h5 className="card-title font-weight-bold">{dataObj.title}</h5>
-                    <p className="card-subtitle">{dataObj.author.firstname}</p>
-                    <p className="col-2 text-truncate">
-                        {truncate(dataObj.content.replace(/<[^>]+>/g,'').split(" ").slice(0, 20).join(" "), 100)}
+                    <p className="card-subtitle">{dataObj.category}</p>
+                    <h5 className="card-title font-weight-bold" style={{ fontSize: "2em" }} >{dataObj.title}</h5>
+                    <p className="card-subtitle">{dataObj.author.fullname}</p>
+                    <p className="card-text text-truncate">
+                        {truncate(dataObj.content.replace(/<[^>]+>/g,'').split(" ").slice(0, 50).join(" "), 500)}
                     </p>
                     <Link
                         className="read-more-button"
                         method =" GET"
-                        to={"http://localhost:3001/api/posts" + dataObj._id}
+                        to={"http://localhost:3001/api/posts/" + dataObj._id}
                     >
                     Read More
                     </Link>
                     </div>
                 </div>
             </div>
-            </div>
           );
         })}
-      </center>
     </div>
   );
 }
