@@ -27,7 +27,6 @@ export const fetchProgramDetailsById = async (ProgramId) => {
   try {
     const response = await axios.get(`${BASE_URL_API}/${ProgramId}`);
     const ProgramDetails = response.data;
-    console.log(ProgramDetails);
     return ProgramDetails;
   } catch (error) {
     console.error(`Error fetching Program with ID ${ProgramId}:`, error);

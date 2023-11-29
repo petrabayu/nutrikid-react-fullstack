@@ -19,12 +19,14 @@ import ProgramFAQ from '../../Components/Programs/ProgramFAQ';
 function ProgramDetailPage() {
   const [programDetails, setProgramDetails] = useState([]);
   const [otherPrograms, setOtherPrograms] = useState([]);
+  const [module, setmodule] = useState([]);
   const [speakers, setSpeakers] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate()
 
   const { programId } = useParams();
+
 
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
@@ -43,6 +45,7 @@ function ProgramDetailPage() {
         const details = await fetchProgramDetailsById(programId);
         setProgramDetails(details);
         setSpeakers(details.user);
+        setmodule(details.module)
       } catch (error) {
         console.error('Error fetching program details:', error);
       }
@@ -63,17 +66,25 @@ function ProgramDetailPage() {
     fetchProgramDetails();
   }, [programId]);
 
-  const handleRegisterProgram = () => {
-    // Handle registration logic here
-    // You can perform any registration-related actions and then close the modal
-    // For now, let's just close the modal
-    handleModalClose();
-  }
+
 
   const handleProgramClick = (programId) => {
     // Navigate to the event detail page with the specified event ID
     navigate(`/program/${programId}`);
   };
+  
+  const handleRegisterClick = () => {
+    // Navigate to the program page with the specified module ID
+    navigate(`/program/${programDetails._id}/${module[0].id}`);
+  };
+
+  const handleRegisterProgram = () => {
+    // Handle registration logic here
+    // You can perform any registration-related actions and then close the modal
+    // For now, let's just close the modal
+    handleRegisterClick();
+    handleModalClose();
+  }
   return (
     <>
       <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between">

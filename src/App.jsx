@@ -27,7 +27,6 @@ function App() {
                 <Route path="program" element={<ProgramDisplayPage />} />
                 <Route path="events/:eventId" element={<EventDetailPage />} />
                 <Route path="program/:programId" element={<ProgramDetailPage />} />
-                <Route path="program/:programId/:moduleId" element={<ProgramPage />} />
                 <Route path="konsultasi" element={<Consultation />} />
                 <Route path="artikel" element={<ArticleMain />} />
               </Route>
@@ -36,6 +35,7 @@ function App() {
               <Route path="detail" element={<ArticleDetail />} />
               <Route path="input" element={<ArticleInput />} />
               <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="program/:programId/:moduleId" element={<ProgramPage />} />
               
 
         </Routes>
