@@ -5,6 +5,7 @@ import LeftBox from "./LeftBox";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import "./login.css";
 
 export default function Register() {
@@ -13,9 +14,9 @@ export default function Register() {
   const apiRegister = "http://localhost:5001/api/auth/signup";
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
   const handleRegistration = async (e) => {
@@ -34,13 +35,24 @@ export default function Register() {
         password,
       });
 
-      console.log("Registration Successful:", response.data);
-      history("login");
+      if (response.status === 201) {
+        // Registrasi berhasil
+        const token = response.data.token;
+
+        // Simpan token dalam cookies
+        Cookies.set("token", token);
+
+        console.log("Registration Successful:", response.data);
+        history("/login");
+      } else {
+        setError("Gagal melakukan registrasi");
+      }
     } catch (error) {
       console.error("Registration Failed:", error.message);
-      // Mungkin tambahkan logika untuk menampilkan pesan kesalahan kepada pengguna
+      setError("Gagal melakukan registrasi");
     }
   };
+
   return (
     <>
       {/* --------------------- MAIN CONTAINER --------------------- */}

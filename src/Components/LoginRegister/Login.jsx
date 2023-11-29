@@ -5,23 +5,23 @@ import LeftBox from "./LeftBox";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"; // Import library Cookies
+import {
+  setLastVisitedPath,
+  getLastVisitedPath,
+} from "../../Routes/visitedPath";
 import "./login.css";
 
 export default function Login() {
   const history = useNavigate();
 
-  const apiLogin = "http://localhost:5001/auth/login";
+  const apiLogin = "http://localhost:3001/api/auth/login";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    // if (password !== confirmPassword) {
-    //   setError("Password dan Konfirmasi Password harus sama");
-    //   return;
-    // }
 
     try {
       const response = await axios.post(apiLogin, {
@@ -29,11 +29,21 @@ export default function Login() {
         password,
       });
 
-      console.log("Login Successful:", response.data);
-      history("/");
+      if (response.status === 200) {
+        const token = response.data.token;
+
+        Cookies.set("token", token);
+        console.log("Login Successful:", response.data);
+
+        const lastVisitedPath = getLastVisitedPath();
+        setLastVisitedPath("/");
+        history(lastVisitedPath);
+      } else {
+        setError("Gagal melakukan login");
+      }
     } catch (error) {
       console.error("Login Failed:", error.message);
-      // Mungkin tambahkan logika untuk menampilkan pesan kesalahan kepada pengguna
+      setError("Gagal melakukan login");
     }
   };
 

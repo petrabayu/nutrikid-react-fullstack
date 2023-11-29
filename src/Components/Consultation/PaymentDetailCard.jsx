@@ -1,11 +1,12 @@
-import DoctorPofile from "./images/doctor-profile.jpg";
+import PropTypes from "prop-types";
+// import DoctorPofile from "./images/doctor-profile.jpg";
 
 export default function PaymentDetailCard({
   doctorName,
+  image,
   service,
   price,
   spesialist,
-  onClose,
 }) {
   return (
     <>
@@ -18,7 +19,7 @@ export default function PaymentDetailCard({
         <div className=" d-flex justify-content-start align-items-center">
           <div>
             <img
-              src={DoctorPofile}
+              src={image}
               className="rounded"
               alt="Doctor's Profile"
               style={{ width: "5rem" }}
@@ -69,3 +70,11 @@ export default function PaymentDetailCard({
     </>
   );
 }
+
+PaymentDetailCard.propTypes = {
+  doctorName: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  specialist: PropTypes.string.isRequired,
+  service: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};

@@ -1,7 +1,8 @@
-import DoctorPofile from "./images/doctor-profile.jpg";
+// import DoctorPofile from "./images/doctor-profile.jpg";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import PropTypes from "prop-types";
 
 import { FaPhone, FaMessage } from "react-icons/fa6";
 import OfflineStatus from "./OfflineStatus";
@@ -9,10 +10,12 @@ import OnlineStatus from "./OnlineStatus";
 import PaymentDetailCard from "./PaymentDetailCard";
 
 function DoctorCard({ doctor }) {
-  const { username, price, spesialist, activeStatus } = doctor;
+  const { firstname, lastname, price, specialist, isOnline, image } = doctor;
 
   const [showPaymentDetails, setShowPaymentDetails] = useState(false);
   const [selectedService, setSelectedService] = useState("");
+
+  const fullname = firstname + " " + lastname;
 
   // const history = useNavigate();
 
@@ -36,20 +39,20 @@ function DoctorCard({ doctor }) {
       <div className="card m-1 my-2 text-center" style={{ maxWidth: "22rem" }}>
         <div>
           <img
-            src={DoctorPofile}
+            src={image}
             className="card-img-top rounded-circle mt-2 mx-auto"
             alt="Doctor's Profile"
             style={{ width: "9rem" }}
           />
         </div>
         <div className="card-body ">
-          <h6 className="card-title fw-bold">{username}</h6>
+          <h6 className="card-title fw-bold">{fullname}</h6>
           <p className="card-subtitle text-body-secondary small mb-2 ">
-            {spesialist}
+            {specialist}
           </p>
 
           {/* staus online offline */}
-          {activeStatus ? <OnlineStatus /> : <OfflineStatus />}
+          {isOnline ? <OnlineStatus /> : <OfflineStatus />}
           {/* 
           <p className="card-text bg-warning rounded bg-opacity-50 m-0">
             <small className="text-body-secondary">
@@ -70,7 +73,7 @@ function DoctorCard({ doctor }) {
           <div className="d-flex">
             <button
               className="btn btn-primary w-50 me-1"
-              disabled={!activeStatus}
+              disabled={!isOnline}
               onClick={handleChatClick}
             >
               <FaMessage style={{ fontSize: "1.5rem", marginRight: "12px" }} />
@@ -78,7 +81,7 @@ function DoctorCard({ doctor }) {
             </button>
             <button
               className="btn btn-secondary w-50 ms-1"
-              disabled={!activeStatus}
+              disabled={!isOnline}
               onClick={handleCallClick}
             >
               <FaPhone style={{ fontSize: "1.5rem", marginRight: "12px" }} />
@@ -88,7 +91,7 @@ function DoctorCard({ doctor }) {
 
           {/* {showPaymentDetails && (
             <PaymentDetailCard
-              doctorName={username}
+              doctorName={firstname,lastname}
               service={selectedService}
               price={selectedService === "Chat" ? price.chat : price.call}
               onClose={handleClosePaymentDetails}
@@ -102,8 +105,9 @@ function DoctorCard({ doctor }) {
             </Modal.Header>
             <Modal.Body>
               <PaymentDetailCard
-                doctorName={username}
-                spesialist={spesialist}
+                doctorName={fullname}
+                image={image}
+                specialist={specialist}
                 service={selectedService}
                 price={selectedService === "Chat" ? price.chat : price.call}
               />
@@ -122,5 +126,19 @@ function DoctorCard({ doctor }) {
     </>
   );
 }
+
+DoctorCard.propTypes = {
+  doctor: PropTypes.shape({
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    price: PropTypes.shape({
+      chat: PropTypes.number.isRequired,
+      call: PropTypes.number.isRequired,
+    }).isRequired,
+    specialist: PropTypes.string.isRequired,
+    isOnline: PropTypes.bool.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default DoctorCard;
