@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom"; // Import Link and useParams
 // import axios from "axios"; // Import axios
 import { FaArrowLeft, FaPaperPlane } from "react-icons/fa6";
 // import { htmlToText } from "html-to-text";
-
+import DOMPurify from "dompurify";
 
 // The component to display the full content of the article
 const ArticleContent = () => {
@@ -47,7 +47,6 @@ const ArticleContent = () => {
       });
   };
 
-
   // Use the useEffect hook to fetch the data when the component mounts, or when the id parameter changes
   useEffect(() => {
     fetchData();
@@ -74,28 +73,35 @@ const ArticleContent = () => {
   // Return the JSX element for the full content
   return (
     <>
-    <Link className="m-5 p-5" to="/artikel"><FaArrowLeft style={{height:48}}/></Link>
-    <div className="container">
-      <Card className="p-3" style={{backgroundColor:"white"}}>
-        <Card.Header style={{backgroundColor:"white"}}>
-          <Card.Subtitle className="mb-2 text-muted">
-            {card.category}
-           </Card.Subtitle>
-          <Card.Title style={{fontSize:"2em"}}>{card.title}</Card.Title> 
-          <p>diupload pada {card.createdAt}</p>
-           {/* <Card.Subtitle className="mb-2 text-muted">
+      <Link className="m-5 p-5" to="/artikel">
+        <FaArrowLeft style={{ height: 48 }} />
+      </Link>
+      <div className="container">
+        <Card className="p-3" style={{ backgroundColor: "white" }}>
+          <Card.Header style={{ backgroundColor: "white" }}>
+            <Card.Subtitle className="mb-2 text-muted">
+              {card.category}
+            </Card.Subtitle>
+            <Card.Title style={{ fontSize: "2em" }}>{card.title}</Card.Title>
+            <p>diupload pada {card.createdAt}</p>
+            {/* <Card.Subtitle className="mb-2 text-muted">
               {JSON.stringify(card.author.fullname)}
            </Card.Subtitle>  */}
-        </Card.Header>
-        <Card.Img variant="top img-fluid" src={card.image} />
-        <Card.Body>
-          <Card.Text className="text-justify">{card.content}</Card.Text>
-          {/* <Card.Text>{plainText}</Card.Text> */}
-          {/* <Card.Text className="text-justify">{card.content.replace(/<[^>]+>/g,'')}</Card.Text> */}
-        </Card.Body>
-      </Card>
-      <Card className="p-3">
-      <Form onSubmit={handleSubmit}>
+          </Card.Header>
+          <Card.Img variant="top img-fluid" src={card.image} />
+          <Card.Body>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(card.content),
+              }}
+            />
+            {/* <Card.Text className="text-justify">{card.content}</Card.Text> */}
+            {/* <Card.Text>{plainText}</Card.Text>
+          <Card.Text className="text-justify">{card.content.replace(/<[^>]+>/g,'')}</Card.Text> */}
+          </Card.Body>
+        </Card>
+        <Card className="p-3">
+          <Form onSubmit={handleSubmit}>
             <Form.Label>Tinggalkan komentar anda</Form.Label>
             <Form.Control
               type="text"
@@ -104,25 +110,30 @@ const ArticleContent = () => {
               onChange={handleInputChange}
               row="5"
             />
-            <Button className="mx-0 my-2" variant="primary" type="submit" style={{ margin: "0.5rem" }}>
-              Kirim <FaPaperPlane/>
+            <Button
+              className="mx-0 my-2"
+              variant="primary"
+              type="submit"
+              style={{ margin: "0.5rem" }}
+            >
+              Kirim <FaPaperPlane />
             </Button>
           </Form>
-      </Card>
-      <ListGroup>
-        <h5 className="mx-0 my-2">Komentar</h5>
-        {comments.length > 0 ? (
-          comments.map((comment, index) => (
-            <ListGroup.Item key={index}>
-              Anonymus said : "{comment}"
-            </ListGroup.Item>
-          ))
-        ) : (
-          <p>No comments yet!</p>
-        )}
-      </ListGroup>
-    </div>
-  </>
+        </Card>
+        <ListGroup>
+          <h5 className="mx-0 my-2">Komentar</h5>
+          {comments.length > 0 ? (
+            comments.map((comment, index) => (
+              <ListGroup.Item key={index}>
+                Anonymus said : "{comment}"
+              </ListGroup.Item>
+            ))
+          ) : (
+            <p>No comments yet!</p>
+          )}
+        </ListGroup>
+      </div>
+    </>
   );
 };
 
