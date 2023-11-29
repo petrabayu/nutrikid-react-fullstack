@@ -1,31 +1,125 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import Carousel from 'react-bootstrap/Carousel';
-import Accordion from 'react-bootstrap/Accordion';
+import { Modal } from 'react-bootstrap';
 import { FaCalendarDays } from "react-icons/fa6";
-import { FaUsers } from "react-icons/fa6";
+import { FaUsers } from "react-icons/fa6";  
 import { FaWifi } from "react-icons/fa6";
+
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
+
+import { fetchOtherProgramsById, fetchProgramDetailsById } from '../../Services/programService';
+import EventCarousel from '../../Components/Events/EventCarousel';
+import ProgramFAQ from '../../Components/Programs/ProgramFAQ';
+
 
 
 
 
 function ProgramDetailPage() {
+  const [programDetails, setProgramDetails] = useState([]);
+  const [otherPrograms, setOtherPrograms] = useState([]);
+  const [module, setmodule] = useState([]);
+  const [speakers, setSpeakers] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate()
+
+  const { programId } = useParams();
+
+
+  const handleModalShow = () => setShowModal(true);
+  const handleModalClose = () => setShowModal(false);
+
+  const rupiah = (number)=>{
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+
+
+  useEffect(() => {
+    const fetchProgramDetails = async () => {
+      try {
+        const details = await fetchProgramDetailsById(programId);
+        setProgramDetails(details);
+        setSpeakers(details.user);
+        setmodule(details.module)
+      } catch (error) {
+        console.error('Error fetching program details:', error);
+      }
+    };
+
+    const fetchOtherPrograms = async () => {
+      try {
+        // Fetch other Program (you may need a dedicated service function)
+        const otherProgramsData = await fetchOtherProgramsById(programId);
+        setOtherPrograms(otherProgramsData);
+      } catch (error) {
+        console.error('Error fetching other events:', error);
+      }
+    };
+
+
+    fetchOtherPrograms();
+    fetchProgramDetails();
+  }, [programId]);
+
+
+
+  const handleProgramClick = (programId) => {
+    // Navigate to the event detail page with the specified event ID
+    navigate(`/program/${programId}`);
+  };
+  
+  const handleRegisterClick = () => {
+    // Navigate to the program page with the specified module ID
+    navigate(`/program/${programDetails._id}/${module[0].id}`);
+  };
+
+  const handleRegisterProgram = () => {
+    // Handle registration logic here
+    // You can perform any registration-related actions and then close the modal
+    // For now, let's just close the modal
+    handleRegisterClick();
+    handleModalClose();
+  }
   return (
     <>
-      <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5">
+      <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between">
         <div>
-          <h1>1000 Hari Pertama : Panduan mengasuh Anak</h1>
-          <p>nutrikid dalam rangka kolaborasi bersama Puskesmas menghadirkan sesi webinar dengan tema “Upaya Kesehatan Masyarakat (UKM)” yang akan mengajak kamu mengeksplorasi aspek-aspek penting didalamnya bersama narasumber Bidan Nanda dan Dr. Alya</p>
-          <p>Rp500.000</p>
-          <button type="button" style={{backgroundColor:"#AB87FF"}} className="btn btn-primary">Daftar Program</button>
+          <h1>{programDetails.title}</h1>
+          <p>{programDetails.description_1}</p>
+          <p>{rupiah(programDetails.price)}</p>
+          <button type="button" style={{backgroundColor:"#AB87FF"}} className="btn btn-primary" onClick={handleModalShow}>Daftar Program</button>
+          {/* Registration Modal */}
+          <Modal show={showModal} onHide={handleModalClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Registration for {programDetails.title}</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    {/* Add any registration form or information here */}
+                    <p>Registration form or details go here...</p>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleModalClose}>
+                      Close
+                    </Button>
+                    <Button variant="primary" onClick={handleRegisterProgram}>
+                      Register
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
         </div>
         <img src="/program/Fam.jpg"/>
       </section>
 
-      <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5">
+      <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between">
         <div>
           <h3>Tentang Program</h3>
-          <p>Program ini dirancang untuk memberdayakan orang tua baru dengan pengetahuan dan keterampilan yang diperlukan untuk memberikan perawatan terbaik bagi bayi mereka selama masa penting 1000 hari pertama kehidupan. Topik yang dibahas meliputi nutrisi bayi, menyusui, rutinitas tidur, tahap perkembangan, dan memelihara lingkungan yang aman dan penuh kasih sayang.</p>
+          <p>{programDetails.description_2}</p>
+          <p>{programDetails.description_3}</p>
           <p>Metode Penilaian selama Program:</p>
           <ol>
             <li>Kuis dan tugas mingguan</li>
@@ -37,7 +131,7 @@ function ProgramDetailPage() {
           <h3>Detail Program</h3>
           <div>
             <h5>Durasi Program</h5>
-            <FaCalendarDays /><span className='ms-2'>12 Minggu</span>
+            <FaCalendarDays /><span className='ms-2'>{programDetails.duration}</span>
           </div>
           <div>
             <h5>Jumlah Pendaftar</h5>
@@ -53,18 +147,16 @@ function ProgramDetailPage() {
         <div>
           <h3>Profil Konselor</h3>
         </div>
-        <div>
-          <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
+        <div className='d-flex align-items-center mt-5 mb-5 me-5 gap-3'>
+        {speakers.map((speaker, index) => (
+              <Card key={index} style={{ width: '18rem' }} className="text-center">
+                <Card.Img variant="top" src={speaker.image} alt={`Speaker ${index + 1}`} />
+                <Card.Body>
+                  <Card.Title>{speaker.fullname}</Card.Title>
+                  <Card.Text>{speaker.firstname}</Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
         </div>
       </section>
       <section className="align-items-center mt-5 mb-5 ms-5 me-5">
@@ -72,32 +164,7 @@ function ProgramDetailPage() {
           <h3>Pertanyaan yang sering ditanyakan?</h3>
         </div>
         <div>
-          <Accordion>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Accordion Item #1</Accordion.Header>
-              <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Accordion Item #2</Accordion.Header>
-              <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+          <ProgramFAQ />
         </div>
       </section>
       <section className="align-items-center mt-5 mb-5 ms-5 me-5">
@@ -105,31 +172,7 @@ function ProgramDetailPage() {
           <h1>Program Lainnya</h1>
         </div>
         <div className='w-100 h-100'>
-          <Carousel style={{backgroundColor: "red"}}>
-            <Carousel.Item>
-            <img src="/program/Fam.jpg"/>
-              <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-            <img src="/program/Fam.jpg"/>
-              <Carousel.Caption>
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-            <img style={{borderRadius: "160px"}} src="/program/Fam.jpg"/>
-              <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
+        <EventCarousel events={otherPrograms} onEventClick={handleProgramClick} />
           </div>
       </section>
     </>

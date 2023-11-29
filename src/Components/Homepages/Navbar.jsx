@@ -1,9 +1,11 @@
 import "../../App.css";
+import { Link, NavLink } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import Cookies from "js-cookie";
 import axios from "axios";
 // import { jwtDecode } from "jwt-decode";
+
 
 function NavbarPage() {
   const [textColors, setTextColors] = useState(["", "", ""]);
@@ -15,7 +17,6 @@ function NavbarPage() {
       i === index ? "black" : ""
     );
     setTextColors(updatedColors);
-  };
 
   useEffect(() => {
     const fetchUserData = async () => {

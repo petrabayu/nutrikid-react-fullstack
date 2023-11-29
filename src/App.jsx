@@ -14,6 +14,7 @@ import NavbarFooter from './Layouts/NavbarFooterLayout'
 import ArticleSearch from './Pages/ArticleSearch';
 import ArticleContent from './Pages/ArticleContent';
 import ArticleInput from './Pages/ArticleInput';
+import AdminDashboard from './Pages/Dashboard/AdminDashboard';
 
 
 function App() {
@@ -24,10 +25,9 @@ function App() {
         <Routes>
               <Route path='/' element ={<NavbarFooter />}>
                 <Route path="/" element={<HomePage />}/>
-                <Route path="Program" element={<ProgramDisplayPage />} />
-                <Route path="events/1" element={<EventDetailPage />} />
-                <Route path="program/1" element={<ProgramDetailPage />} />
-                <Route path="program/1/1" element={<ProgramPage />} />
+                <Route path="program" element={<ProgramDisplayPage />} />
+                <Route path="events/:eventId" element={<EventDetailPage />} />
+                <Route path="program/:programId" element={<ProgramDetailPage />} />
                 <Route path="konsultasi" element={<Consultation />} />
                 <Route path="artikel/*" element={<ArticleSearch />}/>
                 <Route path="/artikel/:id" render={(props) => <ArticleContent {...props} cards={cards}/>} element={<ArticleContent/>}/>
@@ -36,6 +36,10 @@ function App() {
               <Route path="signup" element={<Register />} />
               <Route path="detail" element={<ArticleContent/>} />
               <Route path="input" element={<ArticleInput />} />
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="program/:programId/:moduleId" element={<ProgramPage />} />
+              
+
         </Routes>
       </BrowserRouter>    
       
