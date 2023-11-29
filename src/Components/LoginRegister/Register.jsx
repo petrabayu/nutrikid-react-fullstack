@@ -11,7 +11,7 @@ import "./login.css";
 export default function Register() {
   const history = useNavigate();
 
-  const apiRegister = "http://localhost:5001/api/auth/signup";
+  const apiRegister = "http://localhost:3001/api/auth/signup";
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ export default function Register() {
         email,
         password,
       });
-
+      
       if (response.status === 201) {
         // Registrasi berhasil
         const token = response.data.token;
