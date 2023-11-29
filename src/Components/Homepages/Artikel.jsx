@@ -14,7 +14,7 @@ function Artikel() {
                 <div id="group-big" className="col-xl-6 col-md-12 mb-4">
             <div className="col h-100">
             
-            <div className="card h-100" style={{cursor: "pointer" }} onClick="window.location='article-content.html?id=1';">
+            <div className="card h-100" style={{cursor: "pointer" }}>
 
                 <div className="box-row">
 
@@ -40,7 +40,7 @@ function Artikel() {
                 <div id="group-small" className="card-group row row-cols-1 row-cols-md-2 g-4">
             <div className="col">
             
-            <div className="card h-100" style={{cursor: "pointer" }} onClick="window.location='article-content.html?id=5';">
+            <div className="card h-100" style={{cursor: "pointer" }}>
 
                 <div className="box-row">
 
@@ -64,8 +64,7 @@ function Artikel() {
         
             <div className="col">
             
-            <div className="card h-100" style={{cursor: "pointer" }}
-            onClick="window.location='article-content.html?id=6';">
+            <div className="card h-100" style={{cursor: "pointer" }}>
 
                 <div className="box-row">
 
@@ -89,8 +88,7 @@ function Artikel() {
         
             <div className="col">
             
-            <div className="card h-100" style={{cursor: "pointer" }}
-            onClick="window.location='article-content.html?id=7';">
+            <div className="card h-100" style={{cursor: "pointer" }}>
 
                 <div className="box-row">
 
@@ -114,8 +112,7 @@ function Artikel() {
         
             <div className="col">
             
-            <div className="card h-100" style={{cursor: "pointer" }}
-            onClick="window.location='article-content.html?id=8';">
+            <div className="card h-100" style={{cursor: "pointer" }}>
 
                 <div className="box-row">
 

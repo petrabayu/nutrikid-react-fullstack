@@ -40,11 +40,10 @@
     object-fit: contain;
 }
 
-/* .nav-link {
-    color: #7a7a7a;
-    text-align: left;
-    font: 700 20px/150% "noto sans";
-} */
+.active-nav-link {
+  color: black;
+  /* Add other styles for the active link */
+}
 
 .buttonbox {
     display: flex;
