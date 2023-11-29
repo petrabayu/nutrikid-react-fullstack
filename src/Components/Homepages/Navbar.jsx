@@ -1,9 +1,9 @@
 import "../../App.css";
 import { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 import Cookies from "js-cookie";
+import axios from "axios";
+// import { jwtDecode } from "jwt-decode";
 
 function NavbarPage() {
   const [textColors, setTextColors] = useState(["", "", ""]);
@@ -18,26 +18,36 @@ function NavbarPage() {
   };
 
   useEffect(() => {
-    // Cek apakah ada token dalam cookies
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/api/users/");
+        const userData = response.data;
+
+        setIsLoggedIn(true);
+        setFirstname(userData.data.firstname);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setIsLoggedIn(false);
+      }
+    };
+
     const token = Cookies.get("token");
+    // const decoded = jwtDecode(token);
+    // const userId = decoded.id;
+    // const userId = "6566992b2ac19e4e05e6b723";
+    // console.log(decoded.id);
 
     if (token) {
-      // Jika ada token, tampilkan tombol dengan nama pengguna
-      setIsLoggedIn(true);
-      // Ambil informasi pengguna jika diperlukan (misalnya, nama depan)
-      const userFirstName = Cookies.get("firstname"); // Gantilah sesuai dengan informasi yang kamu simpan
-      setFirstname(userFirstName);
+      fetchUserData();
     } else {
-      // Jika tidak ada token, tampilkan tombol login dan sign up
       setIsLoggedIn(false);
     }
   }, []);
 
   const handleLogout = () => {
-    // Hapus token dari cookies saat logout
     Cookies.remove("token");
-    // Hapus data pengguna dari cookies
     Cookies.remove("userData");
+    window.location.reload();
     setIsLoggedIn(false);
   };
 
@@ -89,10 +99,19 @@ function NavbarPage() {
                 <div className="buttonbox">
                   {isLoggedIn ? (
                     <>
-                      <div className="username">{`Hi, ${firstname}`}</div>
-                      <div className="logout" onClick={handleLogout}>
-                        Logout
-                      </div>
+                      <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                          {/* {`Hi, ${firstname}`} */}
+                          {"Welcome Parents"}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item>User Settings</Dropdown.Item>
+                          <Dropdown.Item onClick={handleLogout}>
+                            Logout
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </>
                   ) : (
                     <>

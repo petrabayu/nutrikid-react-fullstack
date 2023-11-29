@@ -1,7 +1,8 @@
-import DoctorPofile from "./images/doctor-profile.jpg";
+// import DoctorPofile from "./images/doctor-profile.jpg";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import PropTypes from "prop-types";
 
 import { FaPhone, FaMessage } from "react-icons/fa6";
 import OfflineStatus from "./OfflineStatus";
@@ -9,12 +10,12 @@ import OnlineStatus from "./OnlineStatus";
 import PaymentDetailCard from "./PaymentDetailCard";
 
 function DoctorCard({ doctor }) {
-  const { first_name, last_name, price, specialist, isOnline, image } = doctor;
+  const { firstname, lastname, price, specialist, isOnline, image } = doctor;
 
   const [showPaymentDetails, setShowPaymentDetails] = useState(false);
   const [selectedService, setSelectedService] = useState("");
 
-  const fullname = first_name + " " + last_name;
+  const fullname = firstname + " " + lastname;
 
   // const history = useNavigate();
 
@@ -105,6 +106,7 @@ function DoctorCard({ doctor }) {
             <Modal.Body>
               <PaymentDetailCard
                 doctorName={fullname}
+                image={image}
                 specialist={specialist}
                 service={selectedService}
                 price={selectedService === "Chat" ? price.chat : price.call}
@@ -124,5 +126,19 @@ function DoctorCard({ doctor }) {
     </>
   );
 }
+
+DoctorCard.propTypes = {
+  doctor: PropTypes.shape({
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    price: PropTypes.shape({
+      chat: PropTypes.number.isRequired,
+      call: PropTypes.number.isRequired,
+    }).isRequired,
+    specialist: PropTypes.string.isRequired,
+    isOnline: PropTypes.bool.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default DoctorCard;

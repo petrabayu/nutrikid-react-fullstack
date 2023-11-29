@@ -6,6 +6,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"; // Import library Cookies
+import {
+  setLastVisitedPath,
+  getLastVisitedPath,
+} from "../../Routes/visitedPath";
 import "./login.css";
 
 export default function Login() {
@@ -26,15 +30,14 @@ export default function Login() {
       });
 
       if (response.status === 200) {
-        // Login berhasil
         const token = response.data.token;
 
-        // Simpan token dalam cookies
         Cookies.set("token", token);
-
         console.log("Login Successful:", response.data);
-        // Navigasi ke halaman setelah login berhasil
-        history("/");
+
+        const lastVisitedPath = getLastVisitedPath();
+        setLastVisitedPath("/");
+        history(lastVisitedPath);
       } else {
         setError("Gagal melakukan login");
       }

@@ -1,0 +1,77 @@
+[
+  {
+      "title": "1000 Hari Pertama : Panduan mengasuh Anak",
+      "organizer": "nutrikid",
+      "description": "Program ini dirancang untuk memberdayakan orang tua baru dengan pengetahuan dan keterampilan yang diperlukan untuk memberikan perawatan terbaik bagi bayi mereka selama masa penting 1000 hari pertama kehidupan. Topik yang dibahas meliputi nutrisi bayi, menyusui, rutinitas tidur, tahap perkembangan, dan memelihara lingkungan yang aman dan penuh kasih sayang.",
+      "short_desc": "Membantu orang tua baru dengan pengetahuan dan keterampilan yang diperlukan untuk memberikan perawatan terbaik selama 1000 hari pertama yang penting bagi bayi mereka.",
+      "image": "image-url-1.jpg",
+      "price": 500000,
+      "module": [
+          {
+              "id": 1,
+              "title": "nutrikidModule",
+              "description": "nutrikidModule"
+          }
+      ]
+  },
+  {
+    "title": "Pemenuhan Nutrisi Pascapersalinan dan Perawatan Diri",
+    "organizer": "nutrikid & Puskesmas",
+    "description": "Program ini dirancang untuk memberdayakan orang tua baru dengan pengetahuan dan keterampilan yang diperlukan untuk memberikan perawatan terbaik bagi bayi mereka selama masa penting 1000 hari pertama kehidupan. Topik yang dibahas meliputi nutrisi bayi, menyusui, rutinitas tidur, tahap perkembangan, dan memelihara lingkungan yang aman dan penuh kasih sayang.",
+    "short_desc": "Cara memenuhi kebutuhan nutrisi ibu dan pemulihan pasca melahirkan, serta praktik merawat diri.",
+    "image": "image-url-1.jpg",
+    "price": 0,
+    "module": [
+        {
+            "id": 2,
+            "title": "nutrikidModule",
+            "description": "nutrikidModule"
+        }
+    ]
+},
+{
+  "title": "Alergi dan Nutrisi Anak",
+  "organizer": "nutrikid & IAKMI (Ikatan Ahli Kesehatan Masyarakat Indonesia) ",
+  "description": "Program ini dirancang untuk memberdayakan orang tua baru dengan pengetahuan dan keterampilan yang diperlukan untuk memberikan perawatan terbaik bagi bayi mereka selama masa penting 1000 hari pertama kehidupan. Topik yang dibahas meliputi nutrisi bayi, menyusui, rutinitas tidur, tahap perkembangan, dan memelihara lingkungan yang aman dan penuh kasih sayang.",
+  "short_desc": "memberikan pemahaman komprehensif tentang alergi pada masa kanak-kanak, penyebabnya, dan bagaimana nutrisi memainkan peran penting dalam menangani alergi.",
+  "image": "image-url-1.jpg",
+  "price": 150000,
+  "module": [
+      {
+          "id": 3,
+          "title": "nutrikidModule",
+          "description": "nutrikidModule"
+      }
+  ]
+},
+{
+  "title": "Makan Sehat untuk Anak",
+  "organizer": "nutrikid & PERSAGI (Persatuan Ahli Gizi Indonesia)",
+  "description": "Program ini dirancang untuk memberdayakan orang tua baru dengan pengetahuan dan keterampilan yang diperlukan untuk memberikan perawatan terbaik bagi bayi mereka selama masa penting 1000 hari pertama kehidupan. Topik yang dibahas meliputi nutrisi bayi, menyusui, rutinitas tidur, tahap perkembangan, dan memelihara lingkungan yang aman dan penuh kasih sayang.",
+  "short_desc": "memberdayakan orang tua dan pengasuh dengan pengetahuan dan keterampilan yang diperlukan untuk merencanakan dan menyiapkan makanan bergizi untuk anak-anak.",
+  "image": "image-url-1.jpg",
+  "price": 300000,
+  "module": [
+      {
+          "id": 4,
+          "title": "nutrikidModule",
+          "description": "nutrikidModule"
+      }
+  ]
+},
+{
+  "title": "Gizi untuk Ibu Hamil, Bayi, dan Balita",
+  "organizer": "nutrikid & PERSAGI (Persatuan Ahli Gizi Indonesia)",
+  "description": "Modul pembelajaran tentang gizi untuk ibu hamil, bayi, dan balita. Modul ini dapat mencakup informasi mengenai aspek-aspek penting gizi selama masa kehamilan dan pertumbuhan anak.",
+  "short_desc": "Modul pembelajaran tentang gizi untuk ibu hamil, bayi, dan balita. Modul ini dapat mencakup informasi mengenai aspek-aspek penting gizi selama masa kehamilan dan pertumbuhan anak.",
+  "image": "https://dk4fkkwa4o9l0.cloudfront.net/production/uploads/article/image/1730/Ibu_Hamil_Sehat.png",
+  "price": 50000,
+  "module": [
+      {
+          "id": 4,
+          "title": "nutrikidModule",
+          "description": "nutrikidModule"
+      }
+  ]
+}
+]
