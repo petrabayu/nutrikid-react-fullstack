@@ -3,7 +3,6 @@ import { Container, Card, Form, Col, Row, Button } from "react-bootstrap"; // Im
 import axios from "axios"; // Import axios
 import { Link, useParams } from "react-router-dom"; // Import Link, Route, and useParams
 
-
 const truncate = (str, n) => {
   return str.length > n ? str.substr(0, n - 1) + "..." : str;
 };
@@ -101,7 +100,6 @@ function SearchFilterCardList() {
 
   return (
     <div className="justify-content-center">
-
       <Container className="mt-5 d-flex justify-content-center">
         <Row>
           <Col>
@@ -113,41 +111,56 @@ function SearchFilterCardList() {
                 aria-label="Search"
                 value={query}
                 onChange={handleInputChange}
+                style={{ width: "50vw" }}
               />
-              <Button
-              variant="primary"
-              onClick={handleButtonClick}
-              >
+              <Button variant="primary" onClick={handleButtonClick}>
                 Cari
               </Button>
             </Form>
           </Col>
         </Row>
       </Container>
-  
-      <div className="card-list row row-cols-2 d-flex justify-content-center m-3">
+
+      <div className="row justify-content-center p-4">
         {filteredCards.length > 0 ? (
           filteredCards.map((card) => (
-            <Link className="col-4" to={`/artikel/${card._id}`} style={{ width: "18rem"}}>
-            <Card className="m-2" key={card._id}>
-              <Card.Img className="img-fluid" style={{ height: "15em"}} variant="top" src={card.image} />
-              <Card.Body>
-                <Card.Subtitle className="mb-2 text-muted">
-                  {card.category}</Card.Subtitle>
-                <Card.Title>{truncate(card.title.split(" ").slice(0, 10).join(" "), 30)}</Card.Title>
-                <Card.Text>
-                  Ditulis oleh - {card.author.fullname}
-                </Card.Text>
-                <Card.Text>
-                {truncate(card.content.replace(/<[^>]+>/g,'').split(" ").slice(0, 50).join(" "), 100)}
-                </Card.Text> 
-               
+            <Link
+              key={card._id}
+              className=""
+              to={`/artikel/${card._id}`}
+              style={{ width: "28rem" }}
+            >
+              <Card className="m-2 mb-4" key={card._id}>
+                <Card.Img
+                  className="img-fluid"
+                  style={{ height: "15em", objectFit: "cover" }}
+                  variant="top"
+                  src={card.image}
+                />
+                <Card.Body>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    {card.category}
+                  </Card.Subtitle>
+                  <Card.Title className="fw-bold">
+                    {truncate(card.title.split(" ").slice(0, 15).join(" "), 60)}
+                  </Card.Title>
+                  <Card.Text>Ditulis oleh - {card.author.fullname}</Card.Text>
+                  <Card.Text>
+                    {truncate(
+                      card.content
+                        .replace(/<[^>]+>/g, "")
+                        .split(" ")
+                        .slice(0, 50)
+                        .join(" "),
+                      100
+                    )}
+                  </Card.Text>
+
                   {/* <Button variant="success" style={{ margin: "0.5rem" }}>
                     Read full article
                   </Button> */}
-                
-              </Card.Body>
-            </Card>
+                </Card.Body>
+              </Card>
             </Link>
           ))
         ) : (
