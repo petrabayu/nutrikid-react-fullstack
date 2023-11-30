@@ -11,7 +11,9 @@ const truncate = (str, n) => {
 const fetchData = async () => {
   try {
     // Use axios to make a GET request to the API
-    const response = await axios.get("http://localhost:3001/api/posts"); // Replace with your API URL
+    const response = await axios.get(
+      "https://nutrikid-express-be-production.up.railway.app/api/posts"
+    ); // Replace with your API URL
     // Return the data as JSON
     return response.data;
   } catch (error) {

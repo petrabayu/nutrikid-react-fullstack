@@ -15,7 +15,7 @@ import "./login.css";
 export default function Login() {
   const history = useNavigate();
 
-  const apiLogin = "http://localhost:3001/api/auth/login";
+  const apiLogin = "https://nutrikid-express-be-production.up.railway.app/api/auth/login";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");

@@ -1,10 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL_API = 'http://localhost:3001/api/events';
+const BASE_URL_API =
+  "https://nutrikid-express-be-production.up.railway.app/api/events";
 
 // Action types
-export const SET_EVENTS = 'SET_EVENTS';
-export const SET_SELECTED_EVENT = 'SET_SELECTED_EVENT';
+export const SET_EVENTS = "SET_EVENTS";
+export const SET_SELECTED_EVENT = "SET_SELECTED_EVENT";
 
 // Action creators
 export const setEvents = (events) => ({
@@ -12,14 +13,13 @@ export const setEvents = (events) => ({
   payload: events,
 });
 
-
 // Async action creators
 export const fetchEvents = () => async (dispatch) => {
   try {
     const response = await axios.get(BASE_URL_API);
     dispatch(setEvents(response.data));
   } catch (error) {
-    console.error('Error fetching events:', error);
+    console.error("Error fetching events:", error);
   }
 };
 
@@ -44,4 +44,3 @@ export const fetchOtherEventsById = async (eventId) => {
     return null;
   }
 };
-

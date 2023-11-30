@@ -15,7 +15,7 @@ const ArticleList = () => {
   const fetchData = async () => {
     try {
       // Use fetch to make a GET request to the API
-      const response = await fetch("http://localhost:3001/api/posts"); // Replace with your API URL
+      const response = await fetch("https://nutrikid-express-be-production.up.railway.app/api/posts"); // Replace with your API URL
       // Convert the response to JSON format
       const data = await response.json();
       // Update the state variable with the JSON data

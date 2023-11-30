@@ -1,17 +1,17 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL_API = 'http://localhost:3001/api/lesson';
+const BASE_URL_API =
+  "https://nutrikid-express-be-production.up.railway.app/api/lesson";
 
 // Action types
-export const SET_LESSONS = 'SET_LESSONS';
-export const SET_SELECTED_LESSON = 'SET_SELECTED_LESSON';
+export const SET_LESSONS = "SET_LESSONS";
+export const SET_SELECTED_LESSON = "SET_SELECTED_LESSON";
 
 // Action creators
 export const setLessons = (lessons) => ({
   type: SET_LESSONS,
   payload: lessons,
 });
-
 
 // Async action creators
 
@@ -26,7 +26,6 @@ export const fetchLessonDetailsByModuleId = async (ModuleId) => {
   }
 };
 
-
 export const fetchLessonDetailsById = async (ProgramId) => {
   try {
     const response = await axios.get(`${BASE_URL_API}/${ProgramId}`);
@@ -37,5 +36,3 @@ export const fetchLessonDetailsById = async (ProgramId) => {
     return null;
   }
 };
-
-

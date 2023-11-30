@@ -23,7 +23,7 @@ function NavbarPage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/users/");
+        const response = await axios.get("https://nutrikid-express-be-production.up.railway.app/api/users/");
         const userData = response.data;
 
         setIsLoggedIn(true);

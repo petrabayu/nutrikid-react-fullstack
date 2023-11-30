@@ -8,7 +8,7 @@ function DoctorList() {
   useEffect(() => {
     // Panggil API untuk mendapatkan data dokter
     axios
-      .get("http://localhost:3001/api/users/doctors")
+      .get("https://nutrikid-express-be-production.up.railway.app/api/users/doctors")
       .then((response) => {
         const sortedDoctors = response.data.sort(
           (a, b) => b.isOnline - a.isOnline

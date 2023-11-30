@@ -1,10 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL_API = 'http://localhost:3001/api/programs';
+const BASE_URL_API =
+  "https://nutrikid-express-be-production.up.railway.app/api/programs";
 
 // Action types
-export const SET_PROGRAMS = 'SET_PROGRAMS';
-export const SET_SELECTED_PROGRAM = 'SET_SELECTED_PROGRAM';
+export const SET_PROGRAMS = "SET_PROGRAMS";
+export const SET_SELECTED_PROGRAM = "SET_SELECTED_PROGRAM";
 
 // Action creators
 export const setPrograms = (programs) => ({
@@ -12,14 +13,13 @@ export const setPrograms = (programs) => ({
   payload: programs,
 });
 
-
 // Async action creators
 export const fetchPrograms = () => async (dispatch) => {
   try {
     const response = await axios.get(BASE_URL_API);
     dispatch(setPrograms(response.data));
   } catch (error) {
-    console.error('Error fetching Programs:', error);
+    console.error("Error fetching Programs:", error);
   }
 };
 
@@ -38,7 +38,7 @@ export const fetchOtherProgramsById = async (ProgramId) => {
   try {
     const response = await axios.get(`${BASE_URL_API}/exclude/${ProgramId}`);
     const ProgramDetails = response.data;
-    
+
     return ProgramDetails;
   } catch (error) {
     console.error(`Error fetching Program with ID ${ProgramId}:`, error);
@@ -46,14 +46,13 @@ export const fetchOtherProgramsById = async (ProgramId) => {
   }
 };
 
-
-export const rupiah = (number)=>{
+export const rupiah = (number) => {
   if (number === 0) {
-    return "FREE"
+    return "FREE";
   } else {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR"
-  }).format(number);
-}
-}
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
+  }
+};

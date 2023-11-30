@@ -45,7 +45,9 @@ const ArticleContent = () => {
 
   const fetchData = () => {
     // Use fetch to make a GET request to the API with the id parameter
-    fetch(`http://localhost:3001/api/posts/${id}`) // Replace with your API URL
+    fetch(
+      `https://nutrikid-express-be-production.up.railway.app/api/posts/${id}`
+    ) // Replace with your API URL
       .then((response) => response.json()) // Convert the response to JSON format
       .then((data) => {
         // Set the card data to the state variable

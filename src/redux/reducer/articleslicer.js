@@ -14,7 +14,9 @@ const initialState = {
 export const fetchArticles = createAsyncThunk(
   "article/fetchArticles",
   async () => {
-    const response = await axios.get("http://localhost:3001/api/posts");
+    const response = await axios.get(
+      "https://nutrikid-express-be-production.up.railway.app/api/posts"
+    );
     return response.data;
   }
 );
@@ -22,11 +24,14 @@ export const fetchArticles = createAsyncThunk(
 // This is the async action that posts a comment to the API and updates the article
 export const postComment = createAsyncThunk(
   "article/postComment",
-  async ({fullname, comment }) => {
-    const response = await axios.post(`http://localhost:3001/api/posts}`, {
-      fullname,
-      comment,
-    });
+  async ({ fullname, comment }) => {
+    const response = await axios.post(
+      `https://nutrikid-express-be-production.up.railway.app/api/posts}`,
+      {
+        fullname,
+        comment,
+      }
+    );
     return response.data;
   }
 );
@@ -35,13 +40,16 @@ export const postComment = createAsyncThunk(
 export const addArticle = createAsyncThunk(
   "article/addArticle",
   async ({ title, author, image, category, content }) => {
-    const response = await axios.post(`http://localhost:3001/api/posts`, {
-      title,
-      author,
-      image,
-      category,
-      content,
-    });
+    const response = await axios.post(
+      `https://nutrikid-express-be-production.up.railway.app/api/posts`,
+      {
+        title,
+        author,
+        image,
+        category,
+        content,
+      }
+    );
     return response.data;
   }
 );
