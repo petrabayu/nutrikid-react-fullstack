@@ -4,7 +4,7 @@ import NutrikidLogo from "../../../public/nutrikid-logo/nutrikid-text-only-blue-
 import LeftBox from "./LeftBox";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./login.css";
 
@@ -160,7 +160,7 @@ export default function Register() {
                 </button>
                 <div className="my-2 text-center">
                   <p>
-                    Sudah memiliki akun? <a href="login">Login</a>
+                    Sudah memiliki akun ?<Link to="/login"> Login</Link>
                   </p>
                 </div>
               </form>

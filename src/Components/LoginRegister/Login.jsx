@@ -4,7 +4,7 @@ import NutrikidLogo from "../../../public/nutrikid-logo/nutrikid-text-only-blue-
 import LeftBox from "./LeftBox";
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"; // Import library Cookies
 import {
   setLastVisitedPath,
@@ -15,7 +15,8 @@ import "./login.css";
 export default function Login() {
   const history = useNavigate();
 
-  const apiLogin = "https://nutrikid-express-be-production.up.railway.app/api/auth/login";
+  const apiLogin =
+    "https://nutrikid-express-be-production.up.railway.app/api/auth/login";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -112,7 +113,7 @@ export default function Login() {
                 </button>
                 <div className="my-2 text-center">
                   <p>
-                    Belum memiliki akun? <a href="signup">Sign Up</a>
+                    Belum memiliki akun ?<Link to="/signup"> Sign Up</Link>
                   </p>
                 </div>
               </form>
