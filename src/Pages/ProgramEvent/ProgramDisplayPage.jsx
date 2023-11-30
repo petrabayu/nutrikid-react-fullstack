@@ -43,10 +43,10 @@ function ProgramDisplayPage() {
         <section className="container-fluid" style={{backgroundColor:"#B4E1FF"}}>
         <div className="d-flex bannerprogram align-items-center pb-5 pt-5 px-5 gap-3" >
             <div>
-              <img className='program-banner' style={{borderRadius: "40%"}} src="program/Fam.jpg"/>
+              <img className='program-banner img-fluid' style={{borderRadius: "40%"}} src="program/Fam.jpg"/>
             </div>
             <div className="text-center">
-              <h2>Ayo bergabung ke dalam program-program nutrikid dalam meningkatkan wawasan serta skill untuk menjadi Keluarga yang Sehat</h2>
+              <h2 className='text-banner-program'>Ayo bergabung ke dalam program-program nutrikid dalam meningkatkan wawasan serta skill untuk menjadi Keluarga yang Sehat</h2>
             </div>
         </div>
         

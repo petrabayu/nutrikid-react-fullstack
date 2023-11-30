@@ -4,6 +4,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import EventCarousel from "../../Components/Events/EventCarousel";
+import { setLastVisitedPath } from "../../Routes/visitedPath";
+import { Link } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import { fetchEventDetailsById, fetchOtherEventsById } from '../../Services/eventService';
@@ -11,19 +13,25 @@ import { useNavigate, useParams } from "react-router";
 import { Modal } from 'react-bootstrap';
 
 import { rupiah } from "../../Services/programService";
+import Cookies from "js-cookie";
   
 function EventDetailPage() {
   const [eventDetails, setEventDetails] = useState([]);
   const [otherEvents, setOtherEvents] = useState([]);
   const [speakers, setSpeakers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showModalLogin, setShowModalLogin] = useState(false);
 
   const navigate = useNavigate()
 
-  const handleModalShow = () => setShowModal(true);
-  const handleModalClose = () => setShowModal(false);
-
   const { eventId } = useParams();
+  const token = Cookies.get("token");
+
+  const handleModalShow = () => {
+    token ? setShowModal(true) : setShowModalLogin(true);
+  };
+  const handleModalClose = () => setShowModal(false);
+  const LoginhandleModalClose = () => setShowModalLogin(false);
 
   useEffect(() => {
     const fetchEventDetails = async () => {
@@ -65,6 +73,11 @@ function EventDetailPage() {
     navigate(`/events/${eventId}`);
   };
 
+  const handleRedirectToLogin = () => {
+    // Simpan path terakhir sebelum menuju halaman login
+    setLastVisitedPath("/konsultasi");
+  };
+
     return (
       <>
         <section className="d-flex eventbanner align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between gap-5">
@@ -77,7 +90,7 @@ function EventDetailPage() {
                 Daftar Event
               </button>
                {/* Registration Modal */}
-                <Modal show={showModal} onHide={handleModalClose}>
+          <Modal show={showModal} onHide={handleModalClose}>
                   <Modal.Header closeButton>
                     <Modal.Title>Registration for {eventDetails.title}</Modal.Title>
                   </Modal.Header>
@@ -89,11 +102,38 @@ function EventDetailPage() {
                     <Button variant="secondary" onClick={handleModalClose}>
                       Close
                     </Button>
-                    <Button variant="primary" onClick={handleRegisterEvent}>
+                    <Button variant="primary" >
                       Register
                     </Button>
                   </Modal.Footer>
                 </Modal>
+                {/* Force Login Modal */}
+          <Modal show={showModalLogin} onHide={LoginhandleModalClose}>
+            <Modal.Header closeButton>
+              <Modal.Title className='text-center'>Silakan login atau registrasi untuk mendaftar Program</Modal.Title>
+            </Modal.Header>
+            <div className="my-5 p-5">
+              <div className="col-md-6 offset-md-3 text-center ">
+                <div className="mt-3">
+                  <Link
+                    to="/login"
+                    className="btn btn-primary mx-2 my-2"
+                    onClick={handleRedirectToLogin}
+                  >
+                    Login
+                  </Link>
+                  <Link to="/signup" className="btn btn-success mx-2 my-2">
+                    Registrasi
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <Modal.Footer>
+             <Button variant="secondary" onClick={LoginhandleModalClose}>
+               Close
+              </Button>
+             </Modal.Footer>
+          </Modal>
             </div>
             <div>
              <img className="img-fluid" src={eventDetails.image} alt="Event" />

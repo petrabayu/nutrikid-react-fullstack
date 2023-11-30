@@ -367,10 +367,13 @@ footer .main-footer{
 
  @media only screen and (max-width: 576px) {
   /*Program 576 */
-  .program-banner {
+  /* .program-banner {
     width: 80vh;
-  }
+  } */
 
+  .text-banner-program {
+    font-size: 1.25rem;
+  }
   .carousel-event-title {
     font-size: 10px;
   }

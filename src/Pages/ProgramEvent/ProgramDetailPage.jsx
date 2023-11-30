@@ -4,13 +4,15 @@ import { Modal } from 'react-bootstrap';
 import { FaCalendarDays } from "react-icons/fa6";
 import { FaUsers } from "react-icons/fa6";  
 import { FaWifi } from "react-icons/fa6";
-
+import Cookies from "js-cookie";
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import { setLastVisitedPath } from "../../Routes/visitedPath";
 
 import { fetchOtherProgramsById, fetchProgramDetailsById, rupiah } from '../../Services/programService';
 import EventCarousel from '../../Components/Events/EventCarousel';
 import ProgramFAQ from '../../Components/Programs/ProgramFAQ';
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,14 +24,18 @@ function ProgramDetailPage() {
   const [module, setmodule] = useState([]);
   const [speakers, setSpeakers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showModalLogin, setShowModalLogin] = useState(false);
 
   const navigate = useNavigate()
 
   const { programId } = useParams();
+  const token = Cookies.get("token");
 
-
-  const handleModalShow = () => setShowModal(true);
+  const handleModalShow = () => {
+    token ? setShowModal(true) : setShowModalLogin(true);
+  };
   const handleModalClose = () => setShowModal(false);
+  const LoginhandleModalClose = () => setShowModalLogin(false);
 
 
   useEffect(() => {
@@ -78,6 +84,11 @@ function ProgramDetailPage() {
     handleRegisterClick();
     handleModalClose();
   }
+
+  const handleRedirectToLogin = () => {
+    // Simpan path terakhir sebelum menuju halaman login
+    setLastVisitedPath("/konsultasi");
+  };
   return (
     <>
       <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between program-detail-banner gap-5">
@@ -104,6 +115,33 @@ function ProgramDetailPage() {
                     </Button>
                   </Modal.Footer>
                 </Modal>
+                {/* Force Login Modal */}
+          <Modal show={showModalLogin} onHide={LoginhandleModalClose}>
+            <Modal.Header closeButton>
+              <Modal.Title className='text-center'>Silakan login atau registrasi untuk mendaftar Program</Modal.Title>
+            </Modal.Header>
+            <div className="my-5 p-5">
+              <div className="col-md-6 offset-md-3 text-center ">
+                <div className="mt-3">
+                  <Link
+                    to="/login"
+                    className="btn btn-primary mx-2 my-2"
+                    onClick={handleRedirectToLogin}
+                  >
+                    Login
+                  </Link>
+                  <Link to="/signup" className="btn btn-success mx-2 my-2">
+                    Registrasi
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <Modal.Footer>
+             <Button variant="secondary" onClick={LoginhandleModalClose}>
+               Close
+              </Button>
+             </Modal.Footer>
+          </Modal>
         </div>
         <div>
         <img className="img-fluid" src={programDetails.image}/>
