@@ -23,7 +23,7 @@ function LoginOrRegisterMessage() {
             >
               Login
             </Link>
-            <Link to="/singup" className="btn btn-success mx-2 my-2">
+            <Link to="/signup" className="btn btn-success mx-2 my-2">
               Registrasi
             </Link>
           </div>

@@ -160,7 +160,8 @@ const ArticleContent = () => {
           {comments.length > 0 ? (
             comments.map((comment, index) => (
               <ListGroup.Item key={index}>
-                Anonymus said : "{comment}"
+                <span className="fw-bold">Petra Bayu : </span>
+                {comment}
               </ListGroup.Item>
             ))
           ) : (

@@ -11,7 +11,8 @@ import "./login.css";
 export default function Register() {
   const history = useNavigate();
 
-  const apiRegister = "https://nutrikid-express-be-production.up.railway.app/api/auth/signup";
+  const apiRegister =
+    "https://nutrikid-express-be-production.up.railway.app/api/auth/signup";
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -34,7 +35,7 @@ export default function Register() {
         email,
         password,
       });
-      
+
       if (response.status === 201) {
         // Registrasi berhasil
         const token = response.data.token;
@@ -61,7 +62,10 @@ export default function Register() {
         <div className="row border rounded-5 p-4 mx-2 bg-white shadow box-area">
           {/*  --------------------- LEFT BOX --------------------- */}
 
-         
+          <Media
+            query="(min-width: 768px)"
+            render={() => <LeftBox image={RegisterImage} />}
+          />
 
           {/*  --------------------- RIGHT BOX ---------------------  */}
           <div className="col-md rounded-4 mx-2 vh-50">

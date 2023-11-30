@@ -34,14 +34,21 @@ function App() {
             <Route path="/payment/success" element={<PaymentSuccess />} />
             <Route path="/payment/failed" element={<PaymentFailed />} />
             <Route path="artikel/*" element={<ArticleSearch />} />
-            <Route path="/artikel/:id" render={(props) => <ArticleContent {...props} cards={cards} />} element={<ArticleContent />}/>
+            <Route
+              path="/artikel/:id"
+              render={(props) => <ArticleContent {...props} cards={cards} />}
+              element={<ArticleContent />}
+            />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Register />} />
           <Route path="detail" element={<ArticleContent />} />
           <Route path="input" element={<ArticleInput />} />
           <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="program/:programId/:moduleId" element={<ProgramPage />}/>
+          <Route
+            path="program/:programId/:moduleId"
+            element={<ProgramPage />}
+          />
         </Routes>
       </BrowserRouter>
     </>
