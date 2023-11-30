@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Form, Col, Row, Button } from "react-bootstrap"; // Import Button
 import axios from "axios"; // Import axios
-import { Link, Routes, Route, useParams } from "react-router-dom"; // Import Link, Route, and useParams
-import ArticleContent from "./ArticleContent";
+import { Link, useParams } from "react-router-dom"; // Import Link, Route, and useParams
+
 
 const truncate = (str, n) => {
   return str.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -125,28 +125,30 @@ function SearchFilterCardList() {
         </Row>
       </Container>
   
-      <div className="card-list row row-cols-2 d-flex justify-content-center">
+      <div className="card-list row row-cols-2 d-flex justify-content-center m-3">
         {filteredCards.length > 0 ? (
           filteredCards.map((card) => (
-            <Card className="col m-3" key={card._id} style={{ width: "18rem" }}>
-              <Card.Img className="img-fluid" variant="top" src={card.image} />
+            <Link className="col-4" to={`/artikel/${card._id}`} style={{ width: "18rem"}}>
+            <Card className="m-2" key={card._id}>
+              <Card.Img className="img-fluid" style={{ height: "15em"}} variant="top" src={card.image} />
               <Card.Body>
                 <Card.Subtitle className="mb-2 text-muted">
                   {card.category}</Card.Subtitle>
-                <Card.Title>{card.title}</Card.Title>
+                <Card.Title>{truncate(card.title.split(" ").slice(0, 10).join(" "), 30)}</Card.Title>
                 <Card.Text>
                   Ditulis oleh - {card.author.fullname}
                 </Card.Text>
                 <Card.Text>
                 {truncate(card.content.replace(/<[^>]+>/g,'').split(" ").slice(0, 50).join(" "), 100)}
                 </Card.Text> 
-                <Link to={`/artikel/${card._id}`}>
-                  <Button variant="success" style={{ margin: "0.5rem" }}>
+               
+                  {/* <Button variant="success" style={{ margin: "0.5rem" }}>
                     Read full article
-                  </Button>
-                </Link>
+                  </Button> */}
+                
               </Card.Body>
             </Card>
+            </Link>
           ))
         ) : (
           <p>No results found!</p>
