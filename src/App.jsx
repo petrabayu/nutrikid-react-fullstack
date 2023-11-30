@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Consultation from "./Pages/Consultation";
@@ -8,43 +8,49 @@ import Register from "./Components/LoginRegister/Register";
 import ProgramDisplayPage from "./Pages/ProgramEvent/ProgramDisplayPage";
 import EventDetailPage from "./Pages/ProgramEvent/EventDetailPage";
 import ProgramDetailPage from "./Pages/ProgramEvent/ProgramDetailPage";
-import ProgramPage from './Pages/ProgramEvent/ProgramPage';
-import HomePage from './Pages/HomePage';
-import NavbarFooter from './Layouts/NavbarFooterLayout'
-import ArticleSearch from './Pages/ArticleSearch';
-import ArticleContent from './Pages/ArticleContent';
-import ArticleInput from './Pages/ArticleInput';
-import AdminDashboard from './Pages/Dashboard/AdminDashboard';
-import GroupExample from './Components/Programs/test';
-
+import ProgramPage from "./Pages/ProgramEvent/ProgramPage";
+import HomePage from "./Pages/HomePage";
+import NavbarFooter from "./Layouts/NavbarFooterLayout";
+import ArticleSearch from "./Pages/ArticleSearch";
+import ArticleContent from "./Pages/ArticleContent";
+import ArticleInput from "./Pages/ArticleInput";
+import AdminDashboard from "./Pages/Dashboard/AdminDashboard";
+import QRCodeComponent from "./Components/Consultation/QRCodeComponent";
+import PaymentSuccess from "./Components/Consultation/PaymentSucces";
+import PaymentFailed from "./Components/Consultation/PaymentFailed";
 
 function App() {
   return (
     <>
-
       <BrowserRouter>
         <Routes>
-              <Route path='/' element ={<NavbarFooter />}>
-                <Route path="/" element={<HomePage />}/>
-                <Route path="program" element={<ProgramDisplayPage />} />
-                <Route path="events/:eventId" element={<EventDetailPage />} />
-                <Route path="program/:programId" element={<ProgramDetailPage />} />
-                <Route path="konsultasi" element={<Consultation />} />
-                <Route path="artikel/*" element={<ArticleSearch />}/>
-                <Route path="/artikel/:id" render={(props) => <ArticleContent {...props} cards={cards}/>} element={<ArticleContent/>}/>
-              </Route>
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Register />} />
-              <Route path="detail" element={<ArticleContent/>} />
-              <Route path="input" element={<ArticleInput />} />
-              <Route path="dashboard" element={<AdminDashboard />} />
-              <Route path="program/:programId/:moduleId" element={<ProgramPage />} />
-              <Route path="test" element={<GroupExample />} />
-              
-
+          <Route path="/" element={<NavbarFooter />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="program" element={<ProgramDisplayPage />} />
+            <Route path="events/:eventId" element={<EventDetailPage />} />
+            <Route path="program/:programId" element={<ProgramDetailPage />} />
+            <Route path="konsultasi" element={<Consultation />} />
+            <Route path="/payment" element={<QRCodeComponent />} />
+            <Route path="/payment/success" element={<PaymentSuccess />} />
+            <Route path="/payment/failed" element={<PaymentFailed />} />
+            <Route path="artikel/*" element={<ArticleSearch />} />
+            <Route
+              path="/artikel/:id"
+              render={(props) => <ArticleContent {...props} cards={cards} />}
+              element={<ArticleContent />}
+            />
+          </Route>
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Register />} />
+          <Route path="detail" element={<ArticleContent />} />
+          <Route path="input" element={<ArticleInput />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route
+            path="program/:programId/:moduleId"
+            element={<ProgramPage />}
+          />
         </Routes>
-      </BrowserRouter>    
-      
+      </BrowserRouter>
     </>
   );
 }

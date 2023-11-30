@@ -8,6 +8,7 @@ import { FaPhone, FaMessage } from "react-icons/fa6";
 import OfflineStatus from "./OfflineStatus";
 import OnlineStatus from "./OnlineStatus";
 import PaymentDetailCard from "./PaymentDetailCard";
+import { Link } from "react-router-dom";
 
 function DoctorCard({ doctor }) {
   const { firstname, lastname, price, specialist, isOnline, image } = doctor;
@@ -116,9 +117,11 @@ function DoctorCard({ doctor }) {
               {/* <Button variant="secondary" onClick={handleClosePaymentDetails}>
                 Tutup
               </Button> */}
-              <Button variant="primary" onClick={handleClosePaymentDetails}>
-                Lanjutkan Pembayaran
-              </Button>
+              <Link to="/payment">
+                <Button variant="primary" onClick={handleClosePaymentDetails}>
+                  Lanjutkan Pembayaran
+                </Button>
+              </Link>
             </Modal.Footer>
           </Modal>
         </div>

@@ -6,7 +6,7 @@ export default function PaymentDetailCard({
   image,
   service,
   price,
-  spesialist,
+  specialist,
 }) {
   return (
     <>
@@ -27,7 +27,7 @@ export default function PaymentDetailCard({
           </div>
           <div className="ms-4">
             <h5 className="card-title fw-bold">{doctorName}</h5>
-            <h5 className="card-title">{spesialist}</h5>
+            <h5 className="card-title">{specialist}</h5>
           </div>
         </div>
 
