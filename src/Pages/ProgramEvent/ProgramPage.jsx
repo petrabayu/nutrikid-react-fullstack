@@ -3,13 +3,15 @@ import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import { useState, useEffect } from "react";
 
 import { fetchLessonDetailsById } from '../../Services/lessonService';
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function ProgramPage() {
   const [selectedLesson, setSelectedLesson] = useState('Introduction');
   const [searchTerm, setSearchTerm] = useState('');
   const [LessonDetails, setLessonDetails] = useState([]);
   const { moduleId } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLessonDetails = async () => {
@@ -19,7 +21,7 @@ function ProgramPage() {
         // Assuming details is an array of lessons with properties 'title' and 'content'
         setSelectedLesson(details[0]?.title); // Set default selectedLesson to the first lesson title
       } catch (error) {
-        console.error('Error fetching program details:', error);
+        console.error('Error fetching Lesson details:', error);
       }
     };
 
@@ -32,12 +34,17 @@ function ProgramPage() {
 
   const selectedLessonContent = LessonDetails.find((lesson) => lesson.title === selectedLesson)?.content;
 
+  const handleGoBack = () => {
+    navigate(-1); // Go back one step in history
+  };
   return (
     <>
       <nav className="navbar bg-body-tertiary mt-4">
         <div className="container">
-          <div>
-            <FaAngleLeft /> 1000 Hari Pertama: Panduan Mengasuh Bayi Baru Lahir
+          <div
+          onClick={handleGoBack} style={{ cursor: 'pointer' }}
+          >
+            <FaAngleLeft /> BACK
           </div>
           <form className="d-flex" role="search">
             <input
@@ -55,12 +62,14 @@ function ProgramPage() {
         </div>
       </nav>
       <Container className="mt-4">
-        <Row>
+        <Row className="d-flex container-module">
           {/* Lesson Content (Center) */}
           <Col md={8}>
             <div style={{ maxHeight: '80vh', overflowY: 'scroll' }}>
               <h1>{selectedLesson}</h1>
-              <p>{selectedLessonContent}</p>
+              <div dangerouslySetInnerHTML={
+                { __html: selectedLessonContent}
+             } />
             </div>
           </Col>
           {/* List of Lesson Titles (Right Side) */}

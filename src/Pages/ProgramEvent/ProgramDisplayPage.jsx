@@ -10,7 +10,6 @@ import { fetchEvents } from '../../Services/eventService';
 import { fetchPrograms } from '../../Services/programService';
 import EventCarousel from '../../Components/Events/EventCarousel';
 import ProgramCard from '../../Components/Programs/ProgramCard';
-// import Program from '../../Components/Homepages/Program';
 
 function ProgramDisplayPage() {
 
@@ -41,52 +40,42 @@ function ProgramDisplayPage() {
 
     return (
       <>
-        <section className="d-flex align-items-center mt-5  mb-5 ms-5 me-5 gap-3">
-
-          <div>
-            <img style={{borderRadius: "160px"}} src="program/Fam.jpg"/>
-          </div>
-          <div className="text-center">
-            <h2>Ayo bergabung ke dalam program-program nutrikid dalam meningkatkan wawasan serta skill untuk menjadi Keluarga yang Sehat</h2>
-          </div>
-        </section>
-
-
-        <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 gap-5">
-          <div>
-            <h5>Event Terbaru Kami</h5>
-            <p>Bekerja sama dengan partner, kami menyelenggarakan beberapa Program
-              untuk meningkatkan wawasan dan perhatian orang tua dalam mencegah 
-              masalah-masalah kesehatan Anak.</p>
-          </div>
-          <div className="w-100">
-          <EventCarousel events={events} onEventClick={handleEventDetail} />
+        <section className="container-fluid" style={{backgroundColor:"#B4E1FF"}}>
+        <div className="d-flex bannerprogram align-items-center pb-5 pt-5 px-5 gap-3" >
+            <div>
+              <img className='program-banner' style={{borderRadius: "40%"}} src="program/Fam.jpg"/>
+            </div>
+            <div className="text-center">
+              <h2>Ayo bergabung ke dalam program-program nutrikid dalam meningkatkan wawasan serta skill untuk menjadi Keluarga yang Sehat</h2>
+            </div>
         </div>
+        
         </section>
 
-        <section className='mt-5 mb-5 ms-5 me-5 d-flex row gap-5 text-center'> 
-          <div>
-            <h2>Program-Program penyuluhan dari NutriKid</h2>
+
+        <section style={{backgroundColor:"#B4E1FF"}}>
+          <div className="d-flex carouselprogram align-items-center pb-5 pt-5 px-5 gap-3">
+            <div className='text-center'>
+              <h5>Event Terbaru Kami</h5>
+              <p>Bekerja sama dengan partner, kami menyelenggarakan beberapa Program
+                untuk meningkatkan wawasan dan perhatian orang tua dalam mencegah 
+                masalah-masalah kesehatan Anak.</p>
+            </div>
+            <div className='w-100'>
+              <EventCarousel events={events} onEventClick={handleEventDetail} />
+            </div>
           </div>
+          
+        </section>
+
+        <section className='container-fluid d-flex row text-center justify-content-center mb-5 mt-5 gap-3'> 
           <div>
+          <h2>Program-Program Belajar dari NutriKid</h2>
+          </div>
+          <div className="px-3">
             <ProgramCard programs={programs} onProgramClick={handleProgramDetail} />
-          {/* <Row xs={1} md={2} className="g-4">
-            {Array.from({ length: 4 }).map((_, idx) => (
-              <Col key={idx} onClick={handleProgramDetail}>
-                <Card>
-                  <Card.Img variant="top" src="/homepage/100days.png" />
-                  <Card.Body>
-                    <Card.Title>Card title</Card.Title>
-                    <Card.Text>
-                      This is a longer card with supporting text below as a natural
-                      lead-in to additional content. This content is a little bit
-                      longer.
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row> */}
+            {/* <GroupExample /> */}
+
           </div>
         </section>
       </>

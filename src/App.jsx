@@ -15,6 +15,7 @@ import ArticleSearch from './Pages/ArticleSearch';
 import ArticleContent from './Pages/ArticleContent';
 import ArticleInput from './Pages/ArticleInput';
 import AdminDashboard from './Pages/Dashboard/AdminDashboard';
+import GroupExample from './Components/Programs/test';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
               <Route path="input" element={<ArticleInput />} />
               <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="program/:programId/:moduleId" element={<ProgramPage />} />
+              <Route path="test" element={<GroupExample />} />
               
 
         </Routes>

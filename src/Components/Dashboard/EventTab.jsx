@@ -56,9 +56,12 @@ const EventTab = () => {
     const file = e.target.files[0];
     reader.readAsDataURL(file)
     reader.onload = function () {
+      console.log(reader.result);
       setImagePreview(reader.result);
       setNewEvent((prevEvent) => ({ ...prevEvent, image: reader.result }));
     };
+
+  
     
   };
 

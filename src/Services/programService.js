@@ -46,3 +46,14 @@ export const fetchOtherProgramsById = async (ProgramId) => {
   }
 };
 
+
+export const rupiah = (number)=>{
+  if (number === 0) {
+    return "FREE"
+  } else {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  }).format(number);
+}
+}

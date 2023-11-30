@@ -8,7 +8,7 @@ import { FaWifi } from "react-icons/fa6";
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
-import { fetchOtherProgramsById, fetchProgramDetailsById } from '../../Services/programService';
+import { fetchOtherProgramsById, fetchProgramDetailsById, rupiah } from '../../Services/programService';
 import EventCarousel from '../../Components/Events/EventCarousel';
 import ProgramFAQ from '../../Components/Programs/ProgramFAQ';
 
@@ -30,13 +30,6 @@ function ProgramDetailPage() {
 
   const handleModalShow = () => setShowModal(true);
   const handleModalClose = () => setShowModal(false);
-
-  const rupiah = (number)=>{
-    return new Intl.NumberFormat("id-ID", {
-      style: "currency",
-      currency: "IDR"
-    }).format(number);
-  }
 
 
   useEffect(() => {
@@ -87,11 +80,11 @@ function ProgramDetailPage() {
   }
   return (
     <>
-      <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between">
-        <div>
+      <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between program-detail-banner gap-5">
+        <div className='w-75'>
           <h1>{programDetails.title}</h1>
           <p>{programDetails.description_1}</p>
-          <p>{rupiah(programDetails.price)}</p>
+          <h4 style={{color: programDetails.price === 0? "red" : ""}}>{rupiah(programDetails.price)}</h4>
           <button type="button" style={{backgroundColor:"#AB87FF"}} className="btn btn-primary" onClick={handleModalShow}>Daftar Program</button>
           {/* Registration Modal */}
           <Modal show={showModal} onHide={handleModalClose}>
@@ -112,10 +105,13 @@ function ProgramDetailPage() {
                   </Modal.Footer>
                 </Modal>
         </div>
-        <img src="/program/Fam.jpg"/>
+        <div>
+        <img className="img-fluid" src={programDetails.image}/>
+        </div>
+        
       </section>
 
-      <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between">
+      <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 gap-3 justify-content-between program-detail-desc">
         <div>
           <h3>Tentang Program</h3>
           <p>{programDetails.description_2}</p>
@@ -152,8 +148,9 @@ function ProgramDetailPage() {
               <Card key={index} style={{ width: '18rem' }} className="text-center">
                 <Card.Img variant="top" src={speaker.image} alt={`Speaker ${index + 1}`} />
                 <Card.Body>
-                  <Card.Title>{speaker.fullname}</Card.Title>
-                  <Card.Text>{speaker.firstname}</Card.Text>
+                  <Card.Title className="speaker-program-fullname">{speaker.fullname}</Card.Title>
+                  <Card.Text className="speaker-program-firstname">{speaker.firstname}</Card.Text>
+                  <Card.Text className="speaker-program-specialist">{speaker.specialist}</Card.Text>
                 </Card.Body>
               </Card>
             ))}
@@ -167,7 +164,7 @@ function ProgramDetailPage() {
           <ProgramFAQ />
         </div>
       </section>
-      <section className="align-items-center mt-5 mb-5 ms-5 me-5">
+      <section style={{backgroundColor:"#B4E1FF"}} className="align-items-center pt-5 pb-5 px-5">
         <div className="text-center">
           <h1>Program Lainnya</h1>
         </div>

@@ -320,16 +320,100 @@ footer .main-footer{
 
 
  /* Custom Responsive Section */
-
+@media only screen and (max-width: 1240px) {
+  .carouselprogram {
+    flex-direction: column;
+  }
+}
 
 @media only screen and (max-width: 992px) {
   /*Navbar 992 */
   .drop-box {
       padding: 20px 20px;
+  
+  }
+  .bannerprogram, .carouselprogram {
+    flex-direction: column;
+  }
+}
+.img-carousel {
+  width: 40%;
+}
+ /* Custom Responsive Section  */
+ @media only screen and (max-width: 768px) {
+  /* Program 768 */
+
+  .eventcarousel {
+    flex-direction: column;
+  }
+
+  .img-carousel {
+    width: 100%;
+  }
+
+  
+
+  /* event 768 */
+  .eventbanner, .program-detail-banner, .event-detail-desc, .program-detail-desc {
+    flex-direction: column-reverse;
+  }
+  /* module 768 */
+  .container-module {
+    flex-direction: column-reverse;
+    gap: 36px;
+  }
+
+ }
+
+ @media only screen and (max-width: 576px) {
+  /*Program 576 */
+  .program-banner {
+    width: 80vh;
+  }
+
+  .carousel-event-title {
+    font-size: 10px;
+  }
+
+  .carousel-event-desc {
+    display: none;
+  }
+
+  .eventcarousel {
+    padding: 0;
+  }
+
+  /* Event */
+  .speaker-event-fullname, .speaker-program-fullname {
+    font-size: 14px !important;
+  }
+  .speaker-event-specialist, .speaker-event-firstname, .speaker-program-firstname, .speaker-program-specialist{
+    font-size: 12px;
   }
 }
 
 * {
   font-family: "Noto Sans", sans-serif;
 }
+
+
+  /*ProgramDisplayPage */
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+.programcard:hover {
+  box-shadow: 0px 0px 8px 0px #000;   
+}
+
+div.eventcarousel:hover {
+  box-shadow: 0px 0px 8px 0px #000;   
+}
+
+
+
+/* EventDetailPage */
+
 

@@ -2,7 +2,7 @@ import Media from "react-media";
 import RegisterImage from "./Images/background-item-signup.png";
 import NutrikidLogo from "../../../public/nutrikid-logo/nutrikid-text-only-blue-svg.svg";
 import LeftBox from "./LeftBox";
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -61,10 +61,7 @@ export default function Register() {
         <div className="row border rounded-5 p-4 mx-2 bg-white shadow box-area">
           {/*  --------------------- LEFT BOX --------------------- */}
 
-          <Media
-            query="(min-width: 768px)"
-            render={() => <LeftBox image={RegisterImage} />}
-          />
+         
 
           {/*  --------------------- RIGHT BOX ---------------------  */}
           <div className="col-md rounded-4 mx-2 vh-50">
