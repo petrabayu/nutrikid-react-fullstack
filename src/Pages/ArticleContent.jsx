@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Card, Form, Button, ListGroup, Placeholder } from "react-bootstrap"; // Import Card, Form, Button, and ListGroup
+import {
+  Card,
+  Form,
+  Button,
+  ListGroup,
+  Placeholder,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap"; // Import Card, Form, Button, and ListGroup
 import { Link, useParams } from "react-router-dom"; // Import Link and useParams
 // import axios from "axios"; // Import axios
 import { FaArrowLeft, FaPaperPlane } from "react-icons/fa6";
 // import { htmlToText } from "html-to-text";
 import DOMPurify from "dompurify";
+import Cookies from "js-cookie";
 
 // The component to display the full content of the article
 const ArticleContent = () => {
@@ -19,6 +28,7 @@ const ArticleContent = () => {
 
   // The state variable for the user's input
   const [input, setInput] = useState(""); // Initialize with an empty string
+  const token = Cookies.get("token");
 
   // The function to fetch the data from the API by id
   // const fetchData = async () => {
@@ -73,20 +83,20 @@ const ArticleContent = () => {
   // Return the JSX element for the full content
   return (
     <>
-      <Link className="m-5 p-5" to="/artikel">
-        <FaArrowLeft style={{ height: 48 }} />
-      </Link>
       <div className="container">
+        <Link className="my-2" to="/artikel">
+          <FaArrowLeft className="m-4 mx-0" style={{ fontSize: "2.5rem" }} />
+        </Link>
         <Card className="p-3" style={{ backgroundColor: "white" }}>
           <Card.Header style={{ backgroundColor: "white" }}>
             <Card.Subtitle className="mb-2 text-muted">
               {card.category}
             </Card.Subtitle>
             <Card.Title style={{ fontSize: "2em" }}>{card.title}</Card.Title>
-            <p>diupload pada {card.createdAt}</p>
+            {/* <p>diupload pada {card.createdAt}</p> */}
             <Card.Subtitle className="mb-2 text-muted">
               {card.author?.fullname}
-           </Card.Subtitle>
+            </Card.Subtitle>
           </Card.Header>
           <Card.Img variant="top img-fluid" src={card.image} />
           <Card.Body>
@@ -100,7 +110,7 @@ const ArticleContent = () => {
           <Card.Text className="text-justify">{card.content.replace(/<[^>]+>/g,'')}</Card.Text> */}
           </Card.Body>
         </Card>
-        <Card className="p-3">
+        <Card className="p-3 my-4">
           <Form onSubmit={handleSubmit}>
             <Form.Label>Tinggalkan komentar anda</Form.Label>
             <Form.Control
@@ -110,17 +120,40 @@ const ArticleContent = () => {
               onChange={handleInputChange}
               row="5"
             />
-            <Button
-              className="mx-0 my-2"
-              variant="primary"
-              type="submit"
-              style={{ margin: "0.5rem" }}
-            >
-              Kirim <FaPaperPlane />
-            </Button>
+            {token ? (
+              <Button
+                className="mx-0 my-2"
+                variant="primary"
+                type="submit"
+                style={{ margin: "0.5rem" }}
+              >
+                Kirim <FaPaperPlane />
+              </Button>
+            ) : (
+              <OverlayTrigger
+                overlay={
+                  <Tooltip id="tooltip-disabled">
+                    Login untuk berkomentar{" "}
+                  </Tooltip>
+                }
+                placement="right"
+              >
+                <span className="d-inline-block">
+                  <Button
+                    className="mx-0 my-2"
+                    variant="primary"
+                    type="submit"
+                    style={{ margin: "0.5rem" }}
+                    disabled
+                  >
+                    Kirim <FaPaperPlane />
+                  </Button>
+                </span>
+              </OverlayTrigger>
+            )}
           </Form>
         </Card>
-        <ListGroup>
+        <ListGroup className="my-4">
           <h5 className="mx-0 my-2">Komentar</h5>
           {comments.length > 0 ? (
             comments.map((comment, index) => (
