@@ -5,7 +5,7 @@ Front End Nutrikid using React JS + Vite
 
 ### Prequisites
 1. Git
-2. Node.js
+2. React.js + Vite
 3. NPM
    
 
@@ -33,7 +33,7 @@ Front End Nutrikid using React JS + Vite
    -User can login after having an account on this website </br>
 3. Artikel </br>
    -User can search article </br>
-   -User can read articles `'/todos'` </br>
+   -User can read articles </br>
 4. Consultation </br>
    -User can find the doctor </br>
    -User can do consultation using chat or call after doing payment</br>
@@ -49,7 +49,7 @@ Front End Nutrikid using React JS + Vite
 Link netlify: https://nutrikid-v1.netlify.app/
 
 ## Author
-###By Kelompok 3- Youth Digital Acceleration Skilvul x YCAB <
+### By Kelompok 3- Youth Digital Acceleration Skilvul x YCAB 
 - [Naufal Rafi Tsani P A]
 - [Nurul Husna]
 - [Petra Bayu Pangestu] 
