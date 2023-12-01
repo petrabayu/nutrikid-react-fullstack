@@ -5,13 +5,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { handleResetView } from '../../Services/programService';
 import { fetchEvents } from '../../Services/eventService';
 import { fetchPrograms } from '../../Services/programService';
 import EventCarousel from '../../Components/Events/EventCarousel';
 import ProgramCard from '../../Components/Programs/ProgramCard';
 
 function ProgramDisplayPage() {
+
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
@@ -27,11 +28,13 @@ function ProgramDisplayPage() {
   }, [dispatch]);
 
   const handleEventDetail = (eventId) => {
+    handleResetView()
     // Navigate to the event detail page with the specified event ID
-    navigate(`/events/${eventId}`);
+    navigate(`/event/${eventId}`);
   };
 
   const handleProgramDetail = (programId) => {
+    handleResetView()
     // Navigate to the event detail page with the specified event ID
     navigate(`/program/${programId}`);
   };
@@ -74,7 +77,6 @@ function ProgramDisplayPage() {
           </div>
           <div className="px-3">
             <ProgramCard programs={programs} onProgramClick={handleProgramDetail} />
-            {/* <GroupExample /> */}
 
           </div>
         </section>

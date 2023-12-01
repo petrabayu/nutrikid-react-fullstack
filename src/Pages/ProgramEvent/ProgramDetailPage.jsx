@@ -13,18 +13,23 @@ import { fetchOtherProgramsById, fetchProgramDetailsById, rupiah } from '../../S
 import EventCarousel from '../../Components/Events/EventCarousel';
 import ProgramFAQ from '../../Components/Programs/ProgramFAQ';
 import { Link } from 'react-router-dom';
+import EventModalPayment from '../../Components/Events/EventModalPayment';
 
 
 
 
 
 function ProgramDetailPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [programDetails, setProgramDetails] = useState([]);
   const [otherPrograms, setOtherPrograms] = useState([]);
   const [module, setmodule] = useState([]);
   const [speakers, setSpeakers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalLogin, setShowModalLogin] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
 
   const navigate = useNavigate()
 
@@ -32,6 +37,7 @@ function ProgramDetailPage() {
   const token = Cookies.get("token");
 
   const handleModalShow = () => {
+    setSelectedService("Program")
     token ? setShowModal(true) : setShowModalLogin(true);
   };
   const handleModalClose = () => setShowModal(false);
@@ -89,6 +95,7 @@ function ProgramDetailPage() {
     // Simpan path terakhir sebelum menuju halaman login
     setLastVisitedPath("/konsultasi");
   };
+
   return (
     <>
       <section className="d-flex align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between program-detail-banner gap-5">
@@ -99,21 +106,7 @@ function ProgramDetailPage() {
           <button type="button" style={{backgroundColor:"#AB87FF"}} className="btn btn-primary" onClick={handleModalShow}>Daftar Program</button>
           {/* Registration Modal */}
           <Modal show={showModal} onHide={handleModalClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Registration for {programDetails.title}</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    {/* Add any registration form or information here */}
-                    <p>Registration form or details go here...</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={handleRegisterProgram}>
-                      Register
-                    </Button>
-                  </Modal.Footer>
+          <EventModalPayment event={programDetails} selectedService={selectedService}/>
                 </Modal>
                 {/* Force Login Modal */}
           <Modal show={showModalLogin} onHide={LoginhandleModalClose}>

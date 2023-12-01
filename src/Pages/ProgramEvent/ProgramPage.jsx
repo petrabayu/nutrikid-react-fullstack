@@ -35,7 +35,7 @@ function ProgramPage() {
   const selectedLessonContent = LessonDetails.find((lesson) => lesson.title === selectedLesson)?.content;
 
   const handleGoBack = () => {
-    navigate(-1); // Go back one step in history
+    navigate("/program"); // Go back one step in history
   };
   return (
     <>

@@ -13,6 +13,11 @@ export const setPrograms = (programs) => ({
   payload: programs,
 });
 
+export const enrollProgram = (programId) => ({
+  type: 'ENROLL_PROGRAM',
+  programId,
+});
+
 // Async action creators
 export const fetchPrograms = () => async (dispatch) => {
   try {
@@ -56,3 +61,12 @@ export const rupiah = (number) => {
     }).format(number);
   }
 };
+
+
+export const handleResetView = () => {
+  window.scrollTo(0, 0);
+  // Add any other logic you want to perform after resetting the view
+};
+
+
+

@@ -1,4 +1,24 @@
+import { useDispatch, useSelector } from "react-redux";
+import ProgramCard from "../Programs/ProgramCard";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { fetchPrograms } from "../../Services/programService";
+
 function Program() {
+  const programs = useSelector((state) => state.programs.programs);
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPrograms());
+  }, [dispatch]);
+
+  const handleProgramDetail = (programId) => {
+    // Navigate to the event detail page with the specified event ID
+    navigate(`/program/${programId}`);
+  };
+
+  console.log(programs)
   return (
     <>
       <section className="programbox">
@@ -11,7 +31,8 @@ function Program() {
           </div>
         </div>
         <div className="card-group contentprogram ">
-          <div className="card program1 col-md-6">
+        <ProgramCard programs={programs} onProgramClick={handleProgramDetail} />
+          {/* <div className="card program1 col-md-6">
             <img
               src="/homepage/100days.png"
               className="card-img-top imgpg1"
@@ -65,7 +86,7 @@ function Program() {
             <div className="card-footer harga">
               <small className="text-body-secondary">Gratis</small>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </>

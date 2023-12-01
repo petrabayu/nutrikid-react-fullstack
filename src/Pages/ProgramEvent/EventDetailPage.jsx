@@ -3,17 +3,17 @@ import { FaRegClock } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import EventCarousel from "../../Components/Events/EventCarousel";
 import { setLastVisitedPath } from "../../Routes/visitedPath";
 import { Link } from 'react-router-dom';
-
+import Cookies from "js-cookie";
 import { useState, useEffect } from 'react';
 import { fetchEventDetailsById, fetchOtherEventsById } from '../../Services/eventService';
 import { useNavigate, useParams } from "react-router";
 import { Modal } from 'react-bootstrap';
 
 import { rupiah } from "../../Services/programService";
-import Cookies from "js-cookie";
+import EventCarousel from "../../Components/Events/EventCarousel";
+import EventModalPayment from "../../Components/Events/EventModalPayment";
   
 function EventDetailPage() {
   const [eventDetails, setEventDetails] = useState([]);
@@ -21,14 +21,18 @@ function EventDetailPage() {
   const [speakers, setSpeakers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalLogin, setShowModalLogin] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
 
   const navigate = useNavigate()
 
   const { eventId } = useParams();
   const token = Cookies.get("token");
+  const event = "event"
 
   const handleModalShow = () => {
+    setSelectedService("event");
     token ? setShowModal(true) : setShowModalLogin(true);
+    
   };
   const handleModalClose = () => setShowModal(false);
   const LoginhandleModalClose = () => setShowModalLogin(false);
@@ -38,7 +42,6 @@ function EventDetailPage() {
       try {
         const details = await fetchEventDetailsById(eventId);
         setEventDetails(details);
-        console.log(details.user.fullname)
         setSpeakers(details.user);
       } catch (error) {
         console.error('Error fetching event details:', error);
@@ -59,7 +62,6 @@ function EventDetailPage() {
     fetchOtherEvents();
     fetchEventDetails();
   }, [eventId]);
-  console.log(otherEvents)
 
   const handleRegisterEvent = () => {
     // Handle registration logic here
@@ -91,22 +93,8 @@ function EventDetailPage() {
               </button>
                {/* Registration Modal */}
           <Modal show={showModal} onHide={handleModalClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Registration for {eventDetails.title}</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    {/* Add any registration form or information here */}
-                    <p>Registration form or details go here...</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" >
-                      Register
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
+                <EventModalPayment event={eventDetails} selectedService={selectedService}/>
+            </Modal>
                 {/* Force Login Modal */}
           <Modal show={showModalLogin} onHide={LoginhandleModalClose}>
             <Modal.Header closeButton>
@@ -191,7 +179,7 @@ function EventDetailPage() {
             ))}
           </div>
         </section>
-      <section className="align-items-center pt-5 pb-5 px-5">
+      <section className="align-items-center pt-5 pb-5 px-5" style={{backgroundColor : "#B4E1FF"}}>
         <div className="text-center">
           <h1>Event Lainnya</h1>
         </div>
