@@ -1,8 +1,55 @@
-# React + Vite
+# Front End Nutrikid
+Front End Nutrikid using React JS + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Installation and Setup Instructions
 
-Currently, two official plugins are available:
+### Prequisites
+1. Git
+2. Node.js
+3. NPM
+   
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Cloning this repo
+```cmd
+> git clone
+> cd website-nutrikid
+```
+
+### Installing the dependencies
+```cmd
+> npm install
+```
+
+### Running App
+```cmd
+> npm run dev
+```
+
+## Features
+
+1. Register </br>
+   -User can sign in into this website </br>
+2. Login </br>
+   -User can login after having an account on this website </br>
+3. Artikel </br>
+   -User can search article </br>
+   -User can read articles `'/todos'` </br>
+4. Consultation </br>
+   -User can find the doctor </br>
+   -User can do consultation using chat or call after doing payment</br>
+9. Program </br>
+   -User can join the program after login </br>
+   -There are free and payed programs </br>
+   -Programs contain modules and lessons to learn about nutrition and parenting </br>
+10. Event </br>
+   -User can join the event after login</br>
+   -Even will be held on zoom </br>
+    
+## Demo App
+Link netlify: https://nutrikid-v1.netlify.app/
+
+## Author
+###By Kelompok 3- Youth Digital Acceleration Skilvul x YCAB <
+- [Naufal Rafi Tsani P A]
+- [Nurul Husna]
+- [Petra Bayu Pangestu] 
