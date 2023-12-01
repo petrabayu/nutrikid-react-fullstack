@@ -11,7 +11,7 @@ Front End Nutrikid using React JS + Vite
 
 ### Cloning this repo
 ```cmd
-> git clone
+> git clone https://github.com/petrabayu/nutrikid-react-fullstack.git
 > cd website-nutrikid
 ```
 
