@@ -4,7 +4,7 @@ function Artikel() {
     return (
       <>
 
-        <section className="artikelbox">
+        <section className="artikelbox p-0 m-4">
             <div className="artikelphrase">
                 <div className="artikelphrase1">Eksplorasi Artikel dari Para Ahli</div>
                 <div className="artikelphrase2">

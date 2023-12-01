@@ -3,8 +3,8 @@ function About() {
   return (
     <>
       <h1 className="text-center m-4 fw-bold">About Nutrikid</h1>
-      <div className="container w-50">
-        <div className="row">
+      <div className="container col-lg-6">
+        <div className="row mx-2">
           <Accordion defaultActiveKey="0" alwaysOpen>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Apa itu Nutrikid ?</Accordion.Header>
