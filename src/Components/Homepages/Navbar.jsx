@@ -35,10 +35,6 @@ function NavbarPage() {
     };
 
     const token = Cookies.get("token");
-    // const decoded = jwtDecode(token);
-    // const userId = decoded.id;
-    // const userId = "6566992b2ac19e4e05e6b723";
-    // console.log(decoded.id);
 
     if (token) {
       fetchUserData();

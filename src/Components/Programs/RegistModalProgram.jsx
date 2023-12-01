@@ -6,7 +6,6 @@ function RegisterModal({ programDetails, onEventClick }) {
 
     const handleModalShow = () => setShowModal(true);
     const handleModalClose = () => setShowModal(false);
-    console.log(programDetails)
 
     const id = async () => { programDetails._id }
     const moduleId = programDetails.module[0].id

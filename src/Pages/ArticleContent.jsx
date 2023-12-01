@@ -30,19 +30,6 @@ const ArticleContent = () => {
   const [input, setInput] = useState(""); // Initialize with an empty string
   const token = Cookies.get("token");
 
-  // The function to fetch the data from the API by id
-  // const fetchData = async () => {
-  //   try {
-  //     // Use axios to make a GET request to the API with the id parameter
-  //     const response = await axios.get(`http://localhost:3001/api/posts/${id}`); // Replace with your API URL
-  //     // Set the card data to the state variable
-  //     setCard(response.data);
-  //   } catch (error) {
-  //     // Handle the error
-  //     console.error(error);
-  //   }
-  // };
-
   const fetchData = () => {
     // Use fetch to make a GET request to the API with the id parameter
     fetch(
@@ -107,9 +94,6 @@ const ArticleContent = () => {
                 __html: DOMPurify.sanitize(card.content),
               }}
             />
-            {/* <Card.Text className="text-justify">{card.content}</Card.Text> */}
-            {/* <Card.Text>{plainText}</Card.Text>
-          <Card.Text className="text-justify">{card.content.replace(/<[^>]+>/g,'')}</Card.Text> */}
           </Card.Body>
         </Card>
         <Card className="p-3 my-4">

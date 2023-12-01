@@ -118,7 +118,7 @@ function ProgramDetailPage() {
           </Modal>
           {/* Force Login Modal */}
           <Modal show={showModalLogin} onHide={LoginhandleModalClose}>
-            <Modal.Header closeButton>
+            <Modal.Header>
               <Modal.Title className="text-center">
                 Silakan login atau registrasi untuk mendaftar Program
               </Modal.Title>

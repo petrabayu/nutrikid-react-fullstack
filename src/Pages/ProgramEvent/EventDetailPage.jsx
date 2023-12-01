@@ -1,20 +1,23 @@
 import { FaCalendarDays } from "react-icons/fa6";
 import { FaRegClock } from "react-icons/fa6";
 import { FaLocationDot } from "react-icons/fa6";
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import { setLastVisitedPath } from "../../Routes/visitedPath";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useState, useEffect } from 'react';
-import { fetchEventDetailsById, fetchOtherEventsById } from '../../Services/eventService';
+import { useState, useEffect } from "react";
+import {
+  fetchEventDetailsById,
+  fetchOtherEventsById,
+} from "../../Services/eventService";
 import { useNavigate, useParams } from "react-router";
-import { Modal } from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
 import { rupiah } from "../../Services/programService";
 import EventCarousel from "../../Components/Events/EventCarousel";
 import EventModalPayment from "../../Components/Events/EventModalPayment";
-  
+
 function EventDetailPage() {
   const [eventDetails, setEventDetails] = useState([]);
   const [otherEvents, setOtherEvents] = useState([]);
@@ -23,16 +26,15 @@ function EventDetailPage() {
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [selectedService, setSelectedService] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { eventId } = useParams();
   const token = Cookies.get("token");
-  const event = "event"
+  const event = "event";
 
   const handleModalShow = () => {
     setSelectedService("event");
     token ? setShowModal(true) : setShowModalLogin(true);
-    
   };
   const handleModalClose = () => setShowModal(false);
   const LoginhandleModalClose = () => setShowModalLogin(false);
@@ -44,7 +46,7 @@ function EventDetailPage() {
         setEventDetails(details);
         setSpeakers(details.user);
       } catch (error) {
-        console.error('Error fetching event details:', error);
+        console.error("Error fetching event details:", error);
       }
     };
 
@@ -54,10 +56,9 @@ function EventDetailPage() {
         const otherEventsData = await fetchOtherEventsById(eventId);
         setOtherEvents(otherEventsData);
       } catch (error) {
-        console.error('Error fetching other events:', error);
+        console.error("Error fetching other events:", error);
       }
     };
-
 
     fetchOtherEvents();
     fetchEventDetails();
@@ -68,7 +69,7 @@ function EventDetailPage() {
     // You can perform any registration-related actions and then close the modal
     // For now, let's just close the modal
     handleModalClose();
-  }
+  };
 
   const handleEventClick = (eventId) => {
     // Navigate to the event detail page with the specified event ID
@@ -80,25 +81,36 @@ function EventDetailPage() {
     setLastVisitedPath("/konsultasi");
   };
 
-    return (
-      <>
-        <section className="d-flex eventbanner align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between gap-5">
-            <div className="w-75">
-              <h1>{eventDetails.title}</h1>
-              <p>{eventDetails.description_1}</p>
-              <h4 style={{color: eventDetails.price === 0? "red" : ""}}>{rupiah(eventDetails.price)}</h4>
-              <p>{/* Any other event details you want to display */}</p>
-              <button type="button" className="btn btn-primary" onClick={handleModalShow}>
-                Daftar Event
-              </button>
-               {/* Registration Modal */}
+  return (
+    <>
+      <section className="d-flex eventbanner align-items-center mt-5 mb-5 ms-5 me-5 justify-content-between gap-5">
+        <div className="w-75">
+          <h1>{eventDetails.title}</h1>
+          <p>{eventDetails.description_1}</p>
+          <h4 style={{ color: eventDetails.price === 0 ? "red" : "" }}>
+            {rupiah(eventDetails.price)}
+          </h4>
+          <p>{/* Any other event details you want to display */}</p>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleModalShow}
+          >
+            Daftar Event
+          </button>
+          {/* Registration Modal */}
           <Modal show={showModal} onHide={handleModalClose}>
-                <EventModalPayment event={eventDetails} selectedService={selectedService}/>
-            </Modal>
-                {/* Force Login Modal */}
+            <EventModalPayment
+              event={eventDetails}
+              selectedService={selectedService}
+            />
+          </Modal>
+          {/* Force Login Modal */}
           <Modal show={showModalLogin} onHide={LoginhandleModalClose}>
-            <Modal.Header closeButton>
-              <Modal.Title className='text-center'>Silakan login atau registrasi untuk mendaftar Program</Modal.Title>
+            <Modal.Header>
+              <Modal.Title className="text-center">
+                Silakan login atau registrasi untuk mendaftar Program
+              </Modal.Title>
             </Modal.Header>
             <div className="my-5 p-5">
               <div className="col-md-6 offset-md-3 text-center ">
@@ -117,78 +129,97 @@ function EventDetailPage() {
               </div>
             </div>
             <Modal.Footer>
-             <Button variant="secondary" onClick={LoginhandleModalClose}>
-               Close
+              <Button variant="secondary" onClick={LoginhandleModalClose}>
+                Close
               </Button>
-             </Modal.Footer>
+            </Modal.Footer>
           </Modal>
-            </div>
-            <div>
-             <img className="img-fluid" src={eventDetails.image} alt="Event" />
-            </div>
+        </div>
+        <div>
+          <img className="img-fluid" src={eventDetails.image} alt="Event" />
+        </div>
+      </section>
 
-        </section>
-
-        <section className="d-flex align-items-center gap-3 mt-5 mb-5 ms-5 me-5 justify-content-between event-detail-desc">
-          <div className="w-75">
-            <h3>Tentang Event</h3>
-              <p>{eventDetails.description_2}</p>
-              <p>{eventDetails.description_3}</p>
-            <p>Proses cara mengikuti Webinar/Event:</p>
-            <ol>
-              <li>Daftar akun di website NutriKid</li>
-              <li>Pilih Webinar/Event yang ingin diikuti</li>
-              <li>Daftar melalui Page terkait Webinar/Event tersebut</li>
-              <li>Setelah itu, tim NutriKid akan langsung mengirimkan detail akses webinar/event melalui email.</li>
-            </ol>
-          </div>
-          <div className="d-flex row w-50 text-center gap-5">
-            <h3>Detail Event</h3>
-                <div>
-                <h5>Tanggal</h5>
-                <FaCalendarDays />
-                <span className="ms-2">{eventDetails.date}</span>
-              </div>
-              <div>
-                <h5>Waktu</h5>
-                <FaRegClock />
-                <span className="ms-2">{eventDetails.time}</span>
-              </div>
-              <div>
-                <h5>Platform</h5>
-                <FaLocationDot />
-                <span className="ms-2">Zoom</span>
-              </div>
-          </div>
-        </section>
-
-        <section className="align-items-center mt-5 mb-5 ms-5 me-5">
+      <section className="d-flex align-items-center gap-3 mt-5 mb-5 ms-5 me-5 justify-content-between event-detail-desc">
+        <div className="w-75">
+          <h3>Tentang Event</h3>
+          <p>{eventDetails.description_2}</p>
+          <p>{eventDetails.description_3}</p>
+          <p>Proses cara mengikuti Webinar/Event:</p>
+          <ol>
+            <li>Daftar akun di website NutriKid</li>
+            <li>Pilih Webinar/Event yang ingin diikuti</li>
+            <li>Daftar melalui Page terkait Webinar/Event tersebut</li>
+            <li>
+              Setelah itu, tim NutriKid akan langsung mengirimkan detail akses
+              webinar/event melalui email.
+            </li>
+          </ol>
+        </div>
+        <div className="d-flex row w-50 text-center gap-5">
+          <h3>Detail Event</h3>
           <div>
-            <h3>Profil Pemateri</h3>
+            <h5>Tanggal</h5>
+            <FaCalendarDays />
+            <span className="ms-2">{eventDetails.date}</span>
           </div>
-          <div className="d-flex align-items-center mt-5 mb-5 me-5 gap-3">
-            {speakers.map((speaker, index) => (
-              <Card key={index} style={{ width: '18rem' }} className="text-center">
-                <Card.Img variant="top" src={speaker.image} alt={`Speaker ${index + 1}`} />
-                <Card.Body>
-                  <Card.Title className="speaker-event-fullname">{speaker.fullname}</Card.Title>
-                  <Card.Text className="speaker-event-firstname">{speaker.firstname}</Card.Text>
-                  <Card.Text className="speaker-event-specialist">{speaker.specialist}</Card.Text>
-                </Card.Body>
-              </Card>
-            ))}
+          <div>
+            <h5>Waktu</h5>
+            <FaRegClock />
+            <span className="ms-2">{eventDetails.time}</span>
           </div>
-        </section>
-      <section className="align-items-center pt-5 pb-5 px-5" style={{backgroundColor : "#B4E1FF"}}>
+          <div>
+            <h5>Platform</h5>
+            <FaLocationDot />
+            <span className="ms-2">Zoom</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="align-items-center mt-5 mb-5 ms-5 me-5">
+        <div>
+          <h3>Profil Pemateri</h3>
+        </div>
+        <div className="d-flex align-items-center mt-5 mb-5 me-5 gap-3">
+          {speakers.map((speaker, index) => (
+            <Card
+              key={index}
+              style={{ width: "18rem" }}
+              className="text-center"
+            >
+              <Card.Img
+                variant="top"
+                src={speaker.image}
+                alt={`Speaker ${index + 1}`}
+              />
+              <Card.Body>
+                <Card.Title className="speaker-event-fullname">
+                  {speaker.fullname}
+                </Card.Title>
+                <Card.Text className="speaker-event-firstname">
+                  {speaker.firstname}
+                </Card.Text>
+                <Card.Text className="speaker-event-specialist">
+                  {speaker.specialist}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+      </section>
+      <section
+        className="align-items-center pt-5 pb-5 px-5"
+        style={{ backgroundColor: "#B4E1FF" }}
+      >
         <div className="text-center">
           <h1>Event Lainnya</h1>
         </div>
-        <div className='w-75 container-fluid'>
-        <EventCarousel events={otherEvents} onEventClick={handleEventClick} />
-          </div>
+        <div className="w-75 container-fluid">
+          <EventCarousel events={otherEvents} onEventClick={handleEventClick} />
+        </div>
       </section>
-      </>
-    );
-  }
-  
-  export default EventDetailPage;
+    </>
+  );
+}
+
+export default EventDetailPage;

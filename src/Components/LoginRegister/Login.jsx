@@ -34,7 +34,6 @@ export default function Login() {
         const token = response.data.token;
 
         Cookies.set("token", token);
-        console.log("Login Successful:", response.data);
 
         const lastVisitedPath = getLastVisitedPath();
         setLastVisitedPath("/");

@@ -28,29 +28,27 @@ function App() {
         <Routes>
           <Route path="/" element={<NavbarFooter />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="program" element={<ProgramDisplayPage />} />
-            <Route path="event/:eventId" element={<EventDetailPage />} />
-            <Route path="program/:programId" element={<ProgramDetailPage />} />
-            <Route path="konsultasi" element={<Consultation />} />
+            <Route path="/program" element={<ProgramDisplayPage />} />
+            <Route path="/event/:eventId" element={<EventDetailPage />} />
+            <Route path="/program/:programId" element={<ProgramDetailPage />} />
+            <Route path="/konsultasi" element={<Consultation />} />
             <Route path="/payment" element={<QRCodeComponent />} />
             <Route path="/payment/success" element={<PaymentSuccess />} />
-            <Route path=":string/:id/payment" element={<QRCodePayment />} />
-            <Route path=":string/:id/payment/success" element={<PaymentDone />} />
+            <Route path="/:string/:id/payment" element={<QRCodePayment />} />
+            <Route path="/:string/:id/payment/success" element={<PaymentDone />} />
             <Route path="/payment/failed" element={<PaymentFailed />} />
-            <Route path="artikel/*" element={<ArticleSearch />} />
+            <Route path="/artikel/*" element={<ArticleSearch />} />
             <Route
               path="/artikel/:id"
               render={(props) => <ArticleContent {...props} cards={cards} />}
               element={<ArticleContent />}
             />
           </Route>
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Register />} />
-          <Route path="detail" element={<ArticleContent />} />
-          <Route path="input" element={<ArticleInput />} />
-          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/detail" element={<ArticleContent />} />
           <Route
-            path="program/:programId/:moduleId"
+            path="/program/:programId/:moduleId"
             element={<ProgramPage />}
           />
         </Routes>

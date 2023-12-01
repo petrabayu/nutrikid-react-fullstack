@@ -43,7 +43,6 @@ export default function Register() {
         // Simpan token dalam cookies
         Cookies.set("token", token);
 
-        console.log("Registration Successful:", response.data);
         history("/login");
       } else {
         setError("Gagal melakukan registrasi");
