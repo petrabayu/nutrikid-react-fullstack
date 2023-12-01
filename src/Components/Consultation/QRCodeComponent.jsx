@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 import { Link, useNavigate } from "react-router-dom";
 
 const QRCodeComponent = () => {
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(300);
   const navigate = useNavigate();
 
   useEffect(() => {

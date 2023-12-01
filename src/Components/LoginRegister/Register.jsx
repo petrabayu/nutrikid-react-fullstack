@@ -45,11 +45,11 @@ export default function Register() {
 
         history("/login");
       } else {
-        setError("Gagal melakukan registrasi");
+        alert("Gagal melakukan registrasi");
       }
     } catch (error) {
       console.error("Registration Failed:", error.message);
-      setError("Gagal melakukan registrasi");
+      alert("Gagal melakukan registrasi");
     }
   };
 

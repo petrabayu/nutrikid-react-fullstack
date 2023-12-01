@@ -42,6 +42,7 @@ export default function Login() {
         setError("Gagal melakukan login");
       }
     } catch (error) {
+      alert("Email atau Password yang anda masukkan salah");
       console.error("Login Failed:", error.message);
       setError("Gagal melakukan login");
     }

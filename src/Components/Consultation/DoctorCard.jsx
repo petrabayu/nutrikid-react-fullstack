@@ -10,6 +10,8 @@ import OnlineStatus from "./OnlineStatus";
 import PaymentDetailCard from "./PaymentDetailCard";
 import { Link } from "react-router-dom";
 
+
+
 function DoctorCard({ doctor }) {
   const { firstname, lastname, price, specialist, isOnline, image } = doctor;
 
@@ -54,21 +56,11 @@ function DoctorCard({ doctor }) {
 
           {/* staus online offline */}
           {isOnline ? <OnlineStatus /> : <OfflineStatus />}
-          {/* 
-          <p className="card-text bg-warning rounded bg-opacity-50 m-0">
-            <small className="text-body-secondary">
-              Tersedia Kembali
-              <span className="fw-bold"> Sn, 13 Nov 08:00 - 11:00</span>
-            </small>
-          </p> */}
           <div className="m-2">
             <p className="card-text fs-6 fw-bold m-0">
               Chat : <span className="">Rp.{price.chat}</span> | Call :
               <span className="">Rp.{price.call}</span>
             </p>
-            {/* <p className="card-text text-decoration-line-through m-0">
-              Chat : Rp.50.000 | Call : Rp.150.000
-            </p> */}
           </div>
           {/* button */}
           <div className="d-flex">
@@ -89,16 +81,6 @@ function DoctorCard({ doctor }) {
               Call
             </button>
           </div>
-
-          {/* {showPaymentDetails && (
-            <PaymentDetailCard
-              doctorName={firstname,lastname}
-              service={selectedService}
-              price={selectedService === "Chat" ? price.chat : price.call}
-              onClose={handleClosePaymentDetails}
-              // onPaymentSuccess={handlePaymentSuccess}
-            />
-          )} */}
 
           <Modal show={showPaymentDetails} onHide={handleClosePaymentDetails}>
             <Modal.Header className="bg-info" closeButton>
