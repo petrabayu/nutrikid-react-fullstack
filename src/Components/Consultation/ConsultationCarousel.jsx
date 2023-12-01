@@ -26,10 +26,10 @@ function ConsultationCarousel() {
       >
         <Carousel.Item>
           <img
-            className="d-block img-fluid mx-auto"
+            className="d-block img-fluid mx-auto nutrikid-responsive-img"
             src={ImageOne}
             alt="First slide"
-            style={{ height: "40vh", width: "auto" }}
+            style={{ maxHeight: "40vh", width: "auto" }}
           />
           <div className="text-center">
             <h3 className="fw-bold">Sumber Yang Terpercaya</h3>
@@ -38,10 +38,10 @@ function ConsultationCarousel() {
 
         <Carousel.Item>
           <img
-            className="d-block img-fluid mx-auto"
+            className="d-block img-fluid mx-auto nutrikid-responsive-img"
             src={ImageTwo}
             alt="First slide"
-            style={{ height: "40vh", width: "auto" }}
+            style={{ maxHeight: "40vh", width: "auto" }}
           />
           <div className="text-center">
             <h3 className="fw-bold">Informasi Disampaikan Dengan Cepat</h3>
@@ -50,10 +50,10 @@ function ConsultationCarousel() {
 
         <Carousel.Item>
           <img
-            className="d-block img-fluid mx-auto"
+            className="d-block img-fluid mx-auto nutrikid-responsive-img"
             src={ImageThree}
             alt="First slide"
-            style={{ height: "40vh", width: "auto" }}
+            style={{ maxHeight: "40vh", width: "auto" }}
           />
           <div className="text-center">
             <h3 className="fw-bold">Konsultasi Dengan Para Ahli</h3>

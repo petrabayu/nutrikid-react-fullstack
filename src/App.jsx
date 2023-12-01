@@ -16,8 +16,10 @@ import ArticleContent from "./Pages/ArticleContent";
 import ArticleInput from "./Pages/ArticleInput";
 import AdminDashboard from "./Pages/Dashboard/AdminDashboard";
 import QRCodeComponent from "./Components/Consultation/QRCodeComponent";
+import QRCodePayment from "./Components/Events/QRCodePayment";
 import PaymentSuccess from "./Components/Consultation/PaymentSucces";
 import PaymentFailed from "./Components/Consultation/PaymentFailed";
+import PaymentDone from "./Components/Events/PaymentDone";
 
 function App() {
   return (
@@ -27,11 +29,13 @@ function App() {
           <Route path="/" element={<NavbarFooter />}>
             <Route path="/" element={<HomePage />} />
             <Route path="program" element={<ProgramDisplayPage />} />
-            <Route path="events/:eventId" element={<EventDetailPage />} />
+            <Route path="event/:eventId" element={<EventDetailPage />} />
             <Route path="program/:programId" element={<ProgramDetailPage />} />
             <Route path="konsultasi" element={<Consultation />} />
             <Route path="/payment" element={<QRCodeComponent />} />
             <Route path="/payment/success" element={<PaymentSuccess />} />
+            <Route path=":string/:id/payment" element={<QRCodePayment />} />
+            <Route path=":string/:id/payment/success" element={<PaymentDone />} />
             <Route path="/payment/failed" element={<PaymentFailed />} />
             <Route path="artikel/*" element={<ArticleSearch />} />
             <Route

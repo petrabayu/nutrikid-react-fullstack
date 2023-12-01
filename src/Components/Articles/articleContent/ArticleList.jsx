@@ -15,7 +15,9 @@ const ArticleList = () => {
   const fetchData = async () => {
     try {
       // Use fetch to make a GET request to the API
-      const response = await fetch("https://nutrikid-express-be-production.up.railway.app/api/posts"); // Replace with your API URL
+      const response = await fetch(
+        "https://nutrikid-express-be-production.up.railway.app/api/posts"
+      ); // Replace with your API URL
       // Convert the response to JSON format
       const data = await response.json();
       // Update the state variable with the JSON data
@@ -48,7 +50,7 @@ const ArticleList = () => {
             ) => (
               <div className="col" key={article._id}>
                 <Link to={`/artikel/${article._id}`}>
-                  <Card style={{ height: "45rem" }}>
+                  <Card className="mt-3" style={{ height: "45rem" }}>
                     <Card.Img variant="top" src={article.image} />
                     <Card.Body>
                       <Card.Text>{article.category}</Card.Text>
@@ -66,7 +68,7 @@ const ArticleList = () => {
                           article.content
                             .replace(/<[^>]+>/g, "")
                             .split(" ")
-                            .slice(0, 50)
+                            .slice(0, 45)
                             .join(" "),
                           500
                         )}
@@ -79,14 +81,14 @@ const ArticleList = () => {
           )}
         </div>
         <div className="col">
-          <div className="row row-cols-2">
+          <div className="row row-cols-md-2 row-cols-lg-2 row-cols-1 ">
             {fiveArticles.map(
               (
                 article // Use fiveArticles instead of articles
               ) => (
-                <div className="col" key={article._id}>
+                <div className="col " key={article._id}>
                   <Link to={`/artikel/${article._id}`}>
-                    <Card className="mb-3" style={{ height: "22rem" }}>
+                    <Card className="my-3" style={{ height: "22rem" }}>
                       <Card.Img
                         className="img-fluid"
                         variant="top"
