@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/d82f213c-4e2f-4faa-94be-7328efa6be4d)# Frontend Nutrikid
+# Frontend Nutrikid
 Frontend Nutrikid using React JS + Vite
 
 ## Installation and Setup Instructions
