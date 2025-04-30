@@ -27,23 +27,23 @@ Frontend Nutrikid using React JS + Vite
 
 ## Features
 
-1. Register </br>
-   - User can sign in into this website </br>
-2. Login </br>
-   - User can login after having an account on this website </br>
-3. Artikel </br>
-   - User can search article </br>
-   - User can read articles </br>
-4. Consultation </br>
-   - User can find the doctor </br>
-   - User can do consultation using chat or call after doing payment</br>
-9. Program </br>
-   - User can join the program after login </br>
-   - There are free and payed programs </br>
-   - Programs contain modules and lessons to learn about nutrition and parenting </br>
-10. Event </br>
-   - User can join the event after login</br>
-   - Even will be held on zoom </br>
+1. Register
+   - User can sign in into this website
+2. Login
+   - User can login after having an account on this website
+3. Artikel
+   - User can search article
+   - User can read articles
+4. Consultation
+   - User can find the doctor
+   - User can do consultation using chat or call after doing payment
+5. Program
+   - User can join the program after login
+   - There are free and payed programs
+   - Programs contain modules and lessons to learn about nutrition and parenting
+6. Event
+   - User can join the event after login
+   - Even will be held on zoom
     
 ## Live Demo App
 Link: [nutrikid](https://nutrikid-v1.netlify.app/)
